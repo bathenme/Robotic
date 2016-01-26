@@ -1,0 +1,19 @@
+#ifndef CONSTANTS_H_
+#define CONSTANTS_H_
+
+
+// Movement
+#define DISTANCE_TOLERANCE 0.3
+#define ONE_DEGREE_INDEXES 2.4667
+#define TURN_RIGHT_SPEED -0.3
+#define TURN_LEFT_SPEED 0.3
+#define MOVE_SPEED 0.1
+
+#define LASER_RIGHT_INDEX 50
+#define LASER_FORWARD_INDEX 332
+#define LASER_MIN_DISTANCE 0.5
+#define RAW 1.5
+#define PI 3.14159
+#define CM_TO_METER 0.01
+
+#endif
