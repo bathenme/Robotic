@@ -1,14 +1,11 @@
-
-
-#ifndef MAP_H_
-#define MAP_H_
+#pragma once
 
 #include <vector>
 using namespace std;
 
 typedef vector<vector<bool> > Grid;
 
-class Map{
+class Map {
 private:
 	unsigned int mapWidth;
 	unsigned int mapHeight;
@@ -23,19 +20,20 @@ private:
 	Grid coarseGrid; //each cell in the size 2x2of the fine grid cell
 	Grid inflatbleMap; //inflate grid depends the robot radius
 	void converImageToGrid();
-
+	void loadMap();
+	void pirntInfatablMapIntoPng();
 	bool checkIfCellIsOccupied(int i, int j);
 	bool isTrueInflateableMap(int i, int j, int sizeToMerge);
 public:
-	Map(float mapResolution, float robotSize,const char* filePath);
+	Map(float mapResolution, float robotSize);
 	void loadMapFromFile(const char* flePath);
-	void printMap(vector<vector<bool> > map) const;
+	void printMap(vector<vector<bool>> map) const;
 	void printGrid(const Grid grid, int mapheight, int mapwidth, const char* filePath) const;
 	void inflateObstacles();
 	void buildGrid(int robotSizeInCells, Grid& mapToResize);
-	void loadMap();
 	Grid& GetFineGrid();
 	Grid& GetCoarseGrid();
+	Grid& getInflatableGrid();
 	int getRobotSizeInCells();
 	int getMapHeight();
 	int getMapWidth();
@@ -43,6 +41,3 @@ public:
 
 	virtual ~Map();
 };
-
-
-#endif /* MAP_H_ */

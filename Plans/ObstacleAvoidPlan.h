@@ -14,7 +14,7 @@ class ObstacleAvoidPlan: public Plan {
 	Behavior* _beh[4];
 
 public:
-	ObstacleAvoidPlan(Robot* robot, WaypointsManager* wpm);
+	ObstacleAvoidPlan(Robot* robot, wayPoint wpm);
 	Behavior* getStartPoint();
 	virtual ~ObstacleAvoidPlan();
 };

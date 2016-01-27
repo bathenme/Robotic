@@ -14,7 +14,7 @@ Manager::Manager(Robot* robot, Plan* plan) {
 }
 void Manager::run()
 {
-	Behavior* currBeh = _plan->getStart();
+	Behavior* currBeh = _plan->getStartPoint();
 	_robot->Read();
 	if(!(currBeh->startCond()))
 			return;

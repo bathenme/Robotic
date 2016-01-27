@@ -7,7 +7,7 @@
 
 #include "GoToWayPoint.h"
 
-GoToWayPoint::GoToWayPoint(Robot* robot, WaypointsManager* wpm):Behavior(robot) {
+GoToWayPoint::GoToWayPoint(Robot* robot, wayPoint wpm):Behavior(robot) {
 	_wpm = wpm;
 }
 
@@ -18,7 +18,7 @@ GoToWayPoint::~GoToWayPoint() {
 // here we set if the robot should move right or left towards the nearest waypoint
 bool GoToWayPoint::startCond()
 {
-	double yaw = _robot->getYaw();
+	double yaw = _robot->getYawPosition();
 	diffrence = _wpm->currWayPoint.yaw - yaw;
 
 	if(diffrence == 0)

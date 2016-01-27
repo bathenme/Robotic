@@ -9,7 +9,7 @@
 #define MANAGER_H_
 #include "Robot.h"
 #include "Plans/Plan.h"
-#include "Behaviors/Behavior.h"
+#include "behaviors/Behavior.h"
 
 class Manager {
 	Robot* _robot;

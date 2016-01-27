@@ -1,16 +1,7 @@
-/*
- * Node.h
- *
- *  Created on: Dec 10, 2015
- *      Author: colman
- */
-
-#ifndef NODE_H_
-#define NODE_H_
+#pragma once
 
 #include <vector>
 #include <stack>
-#include <stdlib.h>
 #include "wayPoint.h"
 using namespace std;
 class Node {
@@ -31,6 +22,3 @@ public:
 };
 
 
-
-
-#endif /* NODE_H_ */

@@ -1,5 +1,6 @@
 #include "STC.h"
 #include "fstream"
+#include "lodepng.h"
 
 
 using namespace lodepng;
@@ -7,13 +8,14 @@ using namespace lodepng;
 
 STC::STC(Map &map, Position initialRobotPos) : map(map), initialRobotPos(initialRobotPos)
 {
+	
 	//todo: think how to do this dynamic
 	//StcGraph.resize(map.GetCoarseGrid().size()*map.GetCoarseGrid()[0].size() * 2);
 }
 void STC::resizeGraph(int width, int height)
 {
 	graph.resize(height);
-	for (signed int i = 0; i<height; i++)
+	for (unsigned int i = 0; i<height; i++)
 	{
 		graph[i].resize(width);
 	}
@@ -27,17 +29,17 @@ void STC::buildGraph()
 	resizeGraph(width, height);
 	vector<vector<bool> > Grid = map.GetCoarseGrid();
 
-	for (signed int i = 0; i < height; i++)
+	for (unsigned int i = 0; i < height; i++)
 	{
-		for (signed int k = 0; k < width; k++)
+		for (unsigned int k = 0; k < width; k++)
 		{
 			//cout << "this is i: " << i;
 			//cout << "this is k: " << k << endl;
 			if (!Grid[i][k])
-			{
+			{	
 				graph[i][k] = new Node(i, k);
 			}
-		}
+		}	
 	}
 }
 
@@ -45,11 +47,11 @@ void STC::AddNeighborsInTree(){
 	int height = graph.size();
 	int width = graph[0].size();
 	//int edgeCount = 0;
-	for (signed int i = 0; i < height; i++)
+	for (unsigned int i = 0; i < height; i++)
 	{
-		for (signed int k = 0; k < width; k++)
+		for (unsigned int k = 0; k < width; k++)
 		{
-
+			
 			if (graph[i][k] != NULL)
 			{
 				graph[i][k]->graphNeighbors.resize(4);
@@ -58,7 +60,7 @@ void STC::AddNeighborsInTree(){
 				{
 					if (graph[i + 1][k] != NULL)
 					{
-
+					
 						//StcGraph[edgeCount] = Edge(make_pair(i, k), make_pair(i + 1, k));
 						//edgeCount++;
 						graph[i][k]->graphNeighbors[0] = graph[i + 1][k];
@@ -108,8 +110,9 @@ void STC::buildSpanningTree()
 	cout << initialRobotPos.first << " " << initialRobotPos.second;
 	DFS(graph[initialRobotPos.first][initialRobotPos.second]);
 
+	
 	cout << "done" << endl;
-
+	
 }
 
 
@@ -117,8 +120,7 @@ void STC::DFS(Node *node)
 {
 	node->visited = true;//since we visited this node
 
-
-	for (signed int i = 0; i < node->graphNeighbors.size(); i++)
+	for (int i = 0; i < node->graphNeighbors.size(); i++)
 	{
 		node->dfsNeighbors.resize(4);
 		if ((node->graphNeighbors[i] != NULL) && (!node->graphNeighbors[i]->visited))
@@ -171,22 +173,6 @@ void STC::printNodes()
 				{
 					myRoboticLab << " ";
 				}
-				/*for (int j = 0; j < graph[i][k]->graphNeighbors.size(); j++)
-				{
-					if (graph[i][k]->graphNeighbors[j] != NULL)
-					{
-						if (!graph[i][k]->neighborsInTree[j]->printVisited)
-						{
-							myRoboticLab << "*";
-							graph[i][k]->neighborsInTree[j]->printVisited = true;
-						}
-						else
-						{
-							myRoboticLab << " ";
-						}
-					}
-
-				}*/
 			}
 			else
 			{
@@ -206,15 +192,15 @@ void STC::drawSpanningTree(const char* filePath, vector<unsigned char> image)
 	Node* n = graph[initialRobotPos.first][initialRobotPos.second];
 
 	vector<Node* > temp = n->dfsNeighbors;
-	stack<Node*, vector<Node* > > nodeStack(n->dfsNeighbors);
+	stack<Node*, vector<Node* >> nodeStack(n->dfsNeighbors);
 	nodeStack.push(n);
 
 
-	//int t = (305 * map.getMapWidth() + 362) * 4;
-	//image[t] = 255;
-	//image[t + 1] = 51;
-	//image[t + 2] = 255;
-	//encodeOneStep("temp.png", image, map.getMapWidth(), map.getMapHeight());
+	int t = (305 * map.getMapWidth() + 362) * 4;
+	image[t] = 255;
+	image[t + 1] = 51;
+	image[t + 2] = 255;
+	encodeOneStep("temp.png", image, map.getMapWidth(), map.getMapHeight());
 
 	while (!nodeStack.empty()){
 
@@ -267,7 +253,7 @@ void STC::drawSpanningTree(const char* filePath, vector<unsigned char> image)
 				}
 				bottom = true;
 			}
-
+				
 			if (node->dfsNeighbors[1] != NULL){
 				nodeStack.push(node->dfsNeighbors[1]);
 				int d = (((node->dfsNeighbors[1]->row * 24) + 12) * map.getMapWidth() + ((node->dfsNeighbors[1]->col * 24) + 12)) * 4;
@@ -277,7 +263,7 @@ void STC::drawSpanningTree(const char* filePath, vector<unsigned char> image)
 					image[i + 2] = 0;
 				}
 				right = true;
-
+				
 			}
 			if (node->dfsNeighbors[2] != NULL){
 				nodeStack.push(node->dfsNeighbors[2]);
@@ -304,7 +290,7 @@ void STC::drawSpanningTree(const char* filePath, vector<unsigned char> image)
 				if (right &&!left && !top && !bottom && node->parentDirection == "right"){
 					node->parent->rightTopWayPoint->setNextWayPoint(node->leftTopWayPoint);
 					node->leftBottomWayPoint->setNextWayPoint(node->parent->rightBottomWayPoint);
-
+					
 					node->leftTopWayPoint->setNextWayPoint(node->rightTopWayPoint);
 					node->rightBottomWayPoint->setNextWayPoint(node->leftBottomWayPoint);
 				}
@@ -483,12 +469,12 @@ void STC::drawSpanningTree(const char* filePath, vector<unsigned char> image)
 				}
 			}
 		}
-
+		
 		left = right = bottom = top = false;
-
-	}
+		
+	}	
 	drawWayPoints(image);
-	encodeOneStep("temp.png", image, map.getMapWidth(), map.getMapHeight());
+	encodeOneStep(filePath, image, map.getMapWidth(), map.getMapHeight());
 }
 
 
@@ -500,7 +486,7 @@ void STC::drawWayPoints(vector<unsigned char>& image){
 
 		wayPoint* waypoint = wayPointStack.top();
 		wayPointStack.pop();
-		cout << "col: "<< waypoint->getX() << " " << "row: " << waypoint->getY() << endl;
+		//cout << "col: "<< waypoint->getX() << " " << "row: " << waypoint->getY() << endl;
 		if (waypoint != NULL)
 		{
 			int s = ((waypoint->getY() * map.getMapWidth()) + waypoint->getX()) * 4;
@@ -547,7 +533,7 @@ void STC::drawWayPoints(vector<unsigned char>& image){
 		else{
 			wayPointStack.push(waypoint->getNext());
 		}
-
+		
 	}
 
 
@@ -561,9 +547,13 @@ void STC::encodeOneStep(const char* filename, std::vector<unsigned char>& image,
 	if (error) std::cout << "encoder error " << error << ": " << lodepng_error_text(error) << std::endl;
 }
 
-void STC::makeWayPointsVector(){
-
+vector<vector<Node *> >& STC::getNodeGraph(){
+	return graph;
 }
+
+
+
+
 STC::~STC()
 {
 }

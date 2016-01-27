@@ -6,16 +6,21 @@
 
 using namespace lodepng;
 
-Map::Map(float mapResolution, float robotSize, const char* filePath) : mapResolution(mapResolution), robotSize(robotSize)
+Map::Map(float mapResolution, float robotSize) : mapResolution(mapResolution), robotSize(robotSize)
 {
-
+	
 	robotSizeInCells = robotSize / mapResolution;
 	inflationRaduis = 0.3 * robotSizeInCells;
 	cout << "inflation raduis" << inflationRaduis << endl;
-	decode(image, mapWidth, mapHeight, filePath);
-	cout << "Map size: " << mapWidth << ", " << mapHeight << endl;
 }
 
+void Map::loadMapFromFile(const char* filePath)
+{
+	decode(image, mapWidth, mapHeight, filePath);
+	cout << "Map size: " << mapWidth << ", " << mapHeight << endl;
+
+	loadMap();
+}
 
 void Map::converImageToGrid()
 {
@@ -39,7 +44,7 @@ void Map::loadMap()
 		}
 	}
 	inflateObstacles();
-
+	
 }
 
 bool Map::checkIfCellIsOccupied(int i, int j) {
@@ -55,7 +60,7 @@ bool Map::checkIfCellIsOccupied(int i, int j) {
 
 void Map::inflateObstacles()
 {
-
+	
 	inflatbleMap.resize(mapHeight);
 	for (unsigned int i = 0; i<mapHeight; i++)
 	{
@@ -78,7 +83,7 @@ void Map::inflateObstacles()
 						{
 							inflatbleMap[a][b] = true;
 						}
-
+						
 					}
 				}
 			}
@@ -86,16 +91,17 @@ void Map::inflateObstacles()
 		}
 	}
 	//printMap(inflatbleMap);
-
+	pirntInfatablMapIntoPng();
+	
 }
 
-void Map::printMap(vector<vector<bool> > map) const
-{
+void Map::printMap(vector<vector<bool>> map) const
+{	
 	ofstream myRoboticLab;
 	myRoboticLab.open("myRoboticLab.txt");
 	//cout << mapHeight << endl;
 	//cout << mapWidth << endl;
-
+	
 	for (unsigned int i = 0; i < mapHeight; i++)
 	{
 		for (unsigned int k = 0; k < mapWidth; k++)
@@ -130,7 +136,7 @@ bool Map::isTrueInflateableMap(int i, int j, int sizeToMerge)
 	return false;
 }
 void Map::buildGrid(int sizeToMerge, Grid& mapToResize)
-{
+{	
 	cout << mapHeight / sizeToMerge << " " << mapWidth / sizeToMerge << endl;
 	mapToResize.resize(mapHeight / sizeToMerge);
 	for (unsigned int i = 0; i < (mapHeight / sizeToMerge); i++)
@@ -179,6 +185,27 @@ void Map::printGrid(const Grid grid, int mapheight, int mapwidth, const char* fi
 	myRoboticLab.close();
 }
 
+void Map::pirntInfatablMapIntoPng(){
+
+	for (unsigned int i = 0; i < mapHeight; i++)
+	{
+		for (unsigned int k = 0; k < mapWidth; k++)
+		{
+			if (inflatbleMap[i][k])
+			{
+				int c = (i * mapWidth + k) * 4;
+				image[c] = 0;
+				image[c + 1] = 0;
+				image[c + 2] = 0;
+
+			}
+
+		}
+	}
+
+	encode("inflatableRoboticLab.png", image, mapWidth, mapHeight);
+}
+
 Grid& Map::GetFineGrid()
 {
 	return fineGrid;
@@ -208,7 +235,9 @@ vector<unsigned char> Map::getImageVector()
 {
 	return image;
 }
-
+Grid& Map::getInflatableGrid(){
+	return inflatbleMap;
+}
 Map::~Map() {
 	// TODO Auto-generated destructor stub
 }
