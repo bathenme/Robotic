@@ -14,8 +14,9 @@ const char* PARAMETERS = "parameters.txt";
 int main()
 {
 	Robot* robot = new Robot("localhost", 6665);
-
+	cout<<"start main"<<endl;
 	InitEnvironment init = InitEnvironment(PARAMETERS, robot);
+	cout<<"start wp"<<endl;
 	wayPoint wp =  init.getStartLocationAsStartWaypoint();
 	PlnObstacleAvoid pln(robot);
 	Manager manager(robot, &pln);

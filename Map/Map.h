@@ -28,7 +28,7 @@ private:
 	bool isTrueInflateableMap(int i, int j, int sizeToMerge);
 public:
 	Map(float mapResolution, float robotSize, const char* filePath);
-	void loadMapFromFile(const char* flePath);
+	void loadMapFromFile();
 	void printMap(vector<vector<bool> > map) const;
 	void printGrid(const Grid grid, int mapheight, int mapwidth, const char* filePath) const;
 	void inflateObstacles();

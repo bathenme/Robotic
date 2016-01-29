@@ -23,6 +23,7 @@ void Manager::run()
 		_robot->read();
 		while(!(currBeh->stopCond()))
 		{
+			cout<<"start Manager"<<endl;
 			currBeh->action();
 			_robot->read();
 		}

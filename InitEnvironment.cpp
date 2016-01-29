@@ -64,9 +64,10 @@ InitEnvironment::InitEnvironment(const char* parametersFile, Robot* robot){
 
 		
 	}
-
 	m = new Map(getMapResolution(), getRobotSize(),mapImg);
-	m->loadMapFromFile(getMapImage());
+	m->loadMapFromFile();
+	cout << "temp" << endl;
+
 	m->buildGrid(m->getRobotSizeInCells(), m->GetFineGrid());
 	m->buildGrid((m->getRobotSizeInCells() * 2), m->GetCoarseGrid());
 	m->printGrid(m->GetFineGrid(), (m->getMapHeight() / m->getRobotSizeInCells())

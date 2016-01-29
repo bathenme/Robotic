@@ -8,16 +8,16 @@ using namespace lodepng;
 
 Map::Map(float mapResolution, float maprobotSize, const char* filePath) : mapResolution(mapResolution), maprobotSize(maprobotSize)
 {
-	
 	robotSizeInCells = maprobotSize / mapResolution;
 	inflationRaduis = 0.3 * robotSizeInCells;
 	cout << "inflation Radius" << inflationRaduis << endl;
 	decode(image,mapWidth,mapHeight,filePath);
 	cout << "Map size: " << mapWidth<< ", " << mapHeight << endl;
 
+
 }
 
-void Map::loadMapFromFile(const char* filePath)
+void Map::loadMapFromFile()
 {
 
 
@@ -26,6 +26,7 @@ void Map::loadMapFromFile(const char* filePath)
 
 void Map::converImageToGrid()
 {
+	cout << "temp" << endl;
 	map.resize(mapHeight);
 	for (unsigned int i = 0; i<mapHeight; i++)
 	{
