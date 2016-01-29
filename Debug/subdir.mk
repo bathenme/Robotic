@@ -7,22 +7,22 @@ CPP_SRCS += \
 ../InitEnvironment.cpp \
 ../Location.cpp \
 ../Manager.cpp \
-../Robot.cpp \
-../main.cpp 
+../main.cpp \
+../robot.cpp 
 
 OBJS += \
 ./InitEnvironment.o \
 ./Location.o \
 ./Manager.o \
-./Robot.o \
-./main.o 
+./main.o \
+./robot.o 
 
 CPP_DEPS += \
 ./InitEnvironment.d \
 ./Location.d \
 ./Manager.d \
-./Robot.d \
-./main.d 
+./main.d \
+./robot.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

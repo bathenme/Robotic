@@ -14,17 +14,17 @@ Manager::Manager(Robot* robot, Plan* plan) {
 }
 void Manager::run()
 {
-	Behavior* currBeh = _plan->getStartPoint();
-	_robot->Read();
+	Behavior* currBeh = _plan->getStart();
+	_robot->read();
 	if(!(currBeh->startCond()))
 			return;
 	while(currBeh)
 	{
-		_robot->Read();
+		_robot->read();
 		while(!(currBeh->stopCond()))
 		{
 			currBeh->action();
-			_robot->Read();
+			_robot->read();
 		}
 		currBeh = currBeh->getNext();
 	}

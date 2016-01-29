@@ -1,6 +1,8 @@
-behaviors/Behavior.d: ../behaviors/Behavior.cpp ../behaviors/Behavior.h \
- ../behaviors/../robot.h \
- /usr/local/include/player-2.0/libplayerc++/playerc++.h \
+InitEnvironment.d: ../InitEnvironment.cpp ../InitEnvironment.h \
+ ../Map/wayPoint.h ../STCAlg/STC.h ../STCAlg/../Map/Node.h \
+ ../STCAlg/../Map/wayPoint.h ../STCAlg/../Map/Map.h \
+ ../STCAlg/../Map/lodepng.h ../STCAlg/../Map/wayPoint.h ../Map/Map.h \
+ ../robot.h /usr/local/include/player-2.0/libplayerc++/playerc++.h \
  /usr/local/include/player-2.0/libplayerc/playerc.h \
  /usr/local/include/player-2.0/libplayercore/player.h \
  /usr/local/include/player-2.0/libplayercore/playerconfig.h \
@@ -14,9 +16,25 @@ behaviors/Behavior.d: ../behaviors/Behavior.cpp ../behaviors/Behavior.h \
  /usr/local/include/player-2.0/libplayerc++/playererror.h \
  /usr/local/include/player-2.0/libplayerc++/clientproxy.h
 
-../behaviors/Behavior.h:
+../InitEnvironment.h:
 
-../behaviors/../robot.h:
+../Map/wayPoint.h:
+
+../STCAlg/STC.h:
+
+../STCAlg/../Map/Node.h:
+
+../STCAlg/../Map/wayPoint.h:
+
+../STCAlg/../Map/Map.h:
+
+../STCAlg/../Map/lodepng.h:
+
+../STCAlg/../Map/wayPoint.h:
+
+../Map/Map.h:
+
+../robot.h:
 
 /usr/local/include/player-2.0/libplayerc++/playerc++.h:
 

@@ -1,5 +1,5 @@
-#pragma once
-
+#ifndef NODE_H_
+#define NODE_H_
 #include <vector>
 #include <stack>
 #include "wayPoint.h"
@@ -8,10 +8,10 @@ class Node {
 public:
 	vector<Node *> graphNeighbors;
 	vector<Node* > dfsNeighbors;
-	wayPoint * leftTopWayPoint;
-	wayPoint * rightTopWayPoint;
-	wayPoint * leftBottomWayPoint;
-	wayPoint * rightBottomWayPoint;
+	wayPoint* leftTopWayPoint;
+	wayPoint* rightTopWayPoint;
+	wayPoint* leftBottomWayPoint;
+	wayPoint* rightBottomWayPoint;
 	Node* parent;
 	const char* parentDirection;
 	int row, col;
@@ -22,3 +22,4 @@ public:
 };
 
 
+#endif

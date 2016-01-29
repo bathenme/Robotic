@@ -1,7 +1,7 @@
 #include "InitEnvironment.h"
+#include <string>
 
-
-InitEnvironment::InitEnvironment(const char* parametersFile){
+InitEnvironment::InitEnvironment(const char* parametersFile, Robot* robot){
 	ifstream paramfile(parametersFile);
 	string line;
 	char delimiter = ':';
@@ -17,7 +17,8 @@ InitEnvironment::InitEnvironment(const char* parametersFile){
 			// trim from end
 			params[1].erase(find_if(params[1].rbegin(), params[1].rend(), not1(ptr_fun<int, int>(isspace))).base(), params[1].end());
 
-			mapImg = params[1];
+			mapImg = params[1].c_str();
+
 		}
 		else if (params[0] == "startLocation"){
 			// trim from start
@@ -29,8 +30,12 @@ InitEnvironment::InitEnvironment(const char* parametersFile){
 
 			int col = atoi(loc.at(0).c_str()); 
 			int row = atoi(loc.at(1).c_str());
-			startLocation.location = make_pair(row, col);
-			startLocation.yaw = stod(loc.at(2).c_str());
+			robotStartLocation.location = make_pair(row, col);
+			robot->startX = col;
+			robot->startY = row;
+
+			robotStartLocation.yaw = (double)atof(loc.at(2).c_str());
+			robot->startYaw = robotStartLocation.yaw;
 
 		}
 		else if (params[0] == "robotSize"){
@@ -41,10 +46,11 @@ InitEnvironment::InitEnvironment(const char* parametersFile){
 
 			vector<string> size = split(params[1], ' ');
 
-			double hieght = stod(size.at(0).c_str());
-			double width = stod(size.at(1).c_str());
-			robotSize = make_pair(hieght/100, width/100);
-
+			double hieght = (double)atof(size.at(0).c_str());
+			double width = (double)atof(size.at(1).c_str());
+			sizeRobot = make_pair(hieght/100, width/100);
+			robot->robotWidth = width;
+			robot->robotLengt = hieght;
 		}
 		else if (params[0] == "MapResolutionCM"){
 			// trim from start
@@ -52,15 +58,15 @@ InitEnvironment::InitEnvironment(const char* parametersFile){
 			// trim from end
 			params[1].erase(find_if(params[1].rbegin(), params[1].rend(), not1(ptr_fun<int, int>(isspace))).base(), params[1].end());
 
-			double resolution = stod(params[1].c_str());
+			double resolution = (double)atof(params[1].c_str());
 			MapResolution = resolution / 100;
 		}
 
 		
 	}
 
-	m = new Map(getMapResolution(), getRobotSize());
-	m->loadMapFromFile(getMapImage().c_str());
+	m = new Map(getMapResolution(), getRobotSize(),mapImg);
+	m->loadMapFromFile(getMapImage());
 	m->buildGrid(m->getRobotSizeInCells(), m->GetFineGrid());
 	m->buildGrid((m->getRobotSizeInCells() * 2), m->GetCoarseGrid());
 	m->printGrid(m->GetFineGrid(), (m->getMapHeight() / m->getRobotSizeInCells())
@@ -87,18 +93,25 @@ vector<string> InitEnvironment::split(string str, char delimiter) {
 	return internal;
 }
 
-string InitEnvironment::getMapImage(){
+const char* InitEnvironment::getMapImage(){
 	return mapImg;
 }
+
+Position InitEnvironment::getStartXY(){
+	return startXY;
+}
+double InitEnvironment::getStartYaw(){
+	return startYaw;
+}
 startLocation InitEnvironment::getStartLocation(){
-	return startLocation;
+	return robotStartLocation;
 }
 
 double InitEnvironment::getRobotSize(){
-	if (robotSize.first == robotSize.second){
-		return robotSize.first;
+	if (sizeRobot.first == sizeRobot.second){
+		return sizeRobot.first;
 	}
-	return max(robotSize.first,robotSize.second);
+	return sizeRobot.second;
 }
 double InitEnvironment::getMapResolution(){
 	return MapResolution;
@@ -107,9 +120,12 @@ double InitEnvironment::getMapResolution(){
 void InitEnvironment::start(){
 
 }
+void InitEnvironment::setRobot(Robot* robot)
+{
 
+}
 wayPoint& InitEnvironment::getStartLocationAsStartWaypoint(){
-	wayPoint* start = new wayPoint(startLocation.location.first, startLocation.location.second);
+	wayPoint* start = new wayPoint(robotStartLocation.location.first, robotStartLocation.location.second);
 	cout << "start col: " << start->getX() << " " << "start row: " << start->getY() << endl;
 	
 	

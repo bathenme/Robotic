@@ -1,4 +1,6 @@
-#pragma once
+#ifndef MAP_H_
+#define MAP_H_
+
 
 #include <vector>
 using namespace std;
@@ -12,7 +14,7 @@ private:
 	vector<unsigned char> image;
 	vector<vector<bool> > map;
 	float mapResolution;
-	float robotSize;
+	float maprobotSize;
 	int robotSizeInCells;
 	int inflationRaduis;
 
@@ -25,9 +27,9 @@ private:
 	bool checkIfCellIsOccupied(int i, int j);
 	bool isTrueInflateableMap(int i, int j, int sizeToMerge);
 public:
-	Map(float mapResolution, float robotSize);
+	Map(float mapResolution, float robotSize, const char* filePath);
 	void loadMapFromFile(const char* flePath);
-	void printMap(vector<vector<bool>> map) const;
+	void printMap(vector<vector<bool> > map) const;
 	void printGrid(const Grid grid, int mapheight, int mapwidth, const char* filePath) const;
 	void inflateObstacles();
 	void buildGrid(int robotSizeInCells, Grid& mapToResize);
@@ -41,3 +43,5 @@ public:
 
 	virtual ~Map();
 };
+
+#endif

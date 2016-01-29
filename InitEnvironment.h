@@ -1,17 +1,25 @@
-#pragma once
+/*
+ * InitEnvironment.h
+ *
+ *  Created on: Jan 29, 2016
+ *      Author: colman
+ */
+
+#ifndef INITENVIRONMENT_H_
+#define INITENVIRONMENT_H_
 #include <iostream>
 #include <string>
 #include <vector>
 #include <fstream>
 #include <sstream>
-#include <algorithm> 
-#include <functional> 
+#include <algorithm>
+#include <functional>
 #include <cctype>
 #include <locale>
-#include "wayPoint.h"
-#include "STC.h"
-#include "Map.h"
-#include <cmath>
+#include "Map/wayPoint.h"
+#include "STCAlg/STC.h"
+#include "Map/Map.h"
+#include "robot.h"
 
 
 using namespace std;
@@ -26,9 +34,12 @@ struct startLocation {
 class InitEnvironment
 {
 public:
-	InitEnvironment(const char* parametersFile);
-	string getMapImage();
+	InitEnvironment(const char* parametersFile, Robot* robot);
+	void setRobot(Robot* robot);
+	const char* getMapImage();
 	startLocation getStartLocation();
+	Position getStartXY();
+	double getStartYaw();
 	double getRobotSize();
 	double getMapResolution();
 	wayPoint& getStartLocationAsStartWaypoint();
@@ -38,10 +49,15 @@ public:
 private:
 	Map* m;
 	STC* stc;
-	string mapImg;
-	startLocation startLocation;
-	robotSize robotSize;
+	const char* mapImg;
+	Position startXY;
+	double startYaw;
+	startLocation robotStartLocation;
+	robotSize sizeRobot;
 	double MapResolution;
 	vector<string> split(string str, char delimiter);
 };
 
+
+
+#endif /* INITENVIRONMENT_H_ */

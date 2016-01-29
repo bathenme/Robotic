@@ -1,4 +1,7 @@
-#pragma once
+#ifndef WAYPOINT_H_
+#define WAYPOINT_H_
+
+#include <stdlib.h>
 class wayPoint
 {
 private:
@@ -17,3 +20,4 @@ public:
 	~wayPoint();
 };
 
+#endif

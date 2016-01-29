@@ -6,18 +6,20 @@
 
 using namespace lodepng;
 
-Map::Map(float mapResolution, float robotSize) : mapResolution(mapResolution), robotSize(robotSize)
+Map::Map(float mapResolution, float maprobotSize, const char* filePath) : mapResolution(mapResolution), maprobotSize(maprobotSize)
 {
 	
-	robotSizeInCells = robotSize / mapResolution;
+	robotSizeInCells = maprobotSize / mapResolution;
 	inflationRaduis = 0.3 * robotSizeInCells;
-	cout << "inflation raduis" << inflationRaduis << endl;
+	cout << "inflation Radius" << inflationRaduis << endl;
+	decode(image,mapWidth,mapHeight,filePath);
+	cout << "Map size: " << mapWidth<< ", " << mapHeight << endl;
+
 }
 
 void Map::loadMapFromFile(const char* filePath)
 {
-	decode(image, mapWidth, mapHeight, filePath);
-	cout << "Map size: " << mapWidth << ", " << mapHeight << endl;
+
 
 	loadMap();
 }
@@ -34,8 +36,7 @@ void Map::converImageToGrid()
 void Map::loadMap()
 {
 	converImageToGrid();
-	unsigned int j = 0;
-	unsigned int k = 0;
+
 
 	for (int i = 0; i < mapHeight; i++) {
 		for (int j = 0; j < mapWidth; j++) {
@@ -95,7 +96,7 @@ void Map::inflateObstacles()
 	
 }
 
-void Map::printMap(vector<vector<bool>> map) const
+void Map::printMap(vector<vector<bool> > map) const
 {	
 	ofstream myRoboticLab;
 	myRoboticLab.open("myRoboticLab.txt");

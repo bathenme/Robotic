@@ -12,7 +12,6 @@ RM := rm -rf
 -include STCAlg/subdir.mk
 -include Plans/subdir.mk
 -include Map/subdir.mk
--include Configuration/subdir.mk
 -include subdir.mk
 -include objects.mk
 

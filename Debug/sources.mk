@@ -28,5 +28,4 @@ behaviors \
 STCAlg \
 Plans \
 Map \
-Configuration \
 

@@ -1,5 +1,6 @@
-behaviors/Behavior.d: ../behaviors/Behavior.cpp ../behaviors/Behavior.h \
- ../behaviors/../robot.h \
+Plans/PlnObstacleAvoid.d: ../Plans/PlnObstacleAvoid.cpp \
+ ../Plans/PlnObstacleAvoid.h ../Plans/Plan.h \
+ ../Plans/../behaviors/Behavior.h ../Plans/../behaviors/../robot.h \
  /usr/local/include/player-2.0/libplayerc++/playerc++.h \
  /usr/local/include/player-2.0/libplayerc/playerc.h \
  /usr/local/include/player-2.0/libplayercore/player.h \
@@ -12,11 +13,17 @@ behaviors/Behavior.d: ../behaviors/Behavior.cpp ../behaviors/Behavior.h \
  /usr/local/include/player-2.0/libplayerc++/playerc++config.h \
  /usr/local/include/player-2.0/libplayerc++/playerclient.h \
  /usr/local/include/player-2.0/libplayerc++/playererror.h \
- /usr/local/include/player-2.0/libplayerc++/clientproxy.h
+ /usr/local/include/player-2.0/libplayerc++/clientproxy.h \
+ ../Plans/../robot.h ../Plans/../behaviors/MoveForward.h \
+ ../Plans/../behaviors/Behavior.h
 
-../behaviors/Behavior.h:
+../Plans/PlnObstacleAvoid.h:
 
-../behaviors/../robot.h:
+../Plans/Plan.h:
+
+../Plans/../behaviors/Behavior.h:
+
+../Plans/../behaviors/../robot.h:
 
 /usr/local/include/player-2.0/libplayerc++/playerc++.h:
 
@@ -43,3 +50,9 @@ behaviors/Behavior.d: ../behaviors/Behavior.cpp ../behaviors/Behavior.h \
 /usr/local/include/player-2.0/libplayerc++/playererror.h:
 
 /usr/local/include/player-2.0/libplayerc++/clientproxy.h:
+
+../Plans/../robot.h:
+
+../Plans/../behaviors/MoveForward.h:
+
+../Plans/../behaviors/Behavior.h:

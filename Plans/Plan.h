@@ -1,15 +1,21 @@
+/*
+ * Plan.h
+ *
+ *  Created on: Jan 7, 2016
+ *      Author: user
+ */
 
 #ifndef PLAN_H_
 #define PLAN_H_
 #include "../behaviors/Behavior.h"
 
-class Plan {
 
+class Plan {
 protected:
 	Behavior* _start;
 public:
-	Plan(Robot* robot);
-	virtual Behavior* getStartPoint(){return _start;}
+	Plan();
+	virtual Behavior* getStart(){return _start;}
 	virtual ~Plan();
 };
 

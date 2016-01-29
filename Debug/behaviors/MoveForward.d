@@ -1,4 +1,5 @@
-behaviors/Behavior.d: ../behaviors/Behavior.cpp ../behaviors/Behavior.h \
+behaviors/MoveForward.d: ../behaviors/MoveForward.cpp \
+ ../behaviors/MoveForward.h ../behaviors/Behavior.h \
  ../behaviors/../robot.h \
  /usr/local/include/player-2.0/libplayerc++/playerc++.h \
  /usr/local/include/player-2.0/libplayerc/playerc.h \
@@ -13,6 +14,8 @@ behaviors/Behavior.d: ../behaviors/Behavior.cpp ../behaviors/Behavior.h \
  /usr/local/include/player-2.0/libplayerc++/playerclient.h \
  /usr/local/include/player-2.0/libplayerc++/playererror.h \
  /usr/local/include/player-2.0/libplayerc++/clientproxy.h
+
+../behaviors/MoveForward.h:
 
 ../behaviors/Behavior.h:
 

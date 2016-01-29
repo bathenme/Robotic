@@ -4,9 +4,8 @@
  *  Created on: Jan 7, 2016
  *      Author: user
  */
-#include "Configuration/ConfigManager.h"
-#include "Plans/ObstacleAvoidPlan.h"
-#include "Robot.h"
+#include "Plans/PlnObstacleAvoid.h"
+#include "robot.h"
 #include "Manager.h"
 #include "Map/Map.h"
 #include "STCAlg/STC.h"
@@ -14,13 +13,12 @@
 const char* PARAMETERS = "parameters.txt";
 int main()
 {
-	InitEnvironment init = InitEnvironment(PARAMETERS);
+	Robot* robot = new Robot("localhost", 6665);
+
+	InitEnvironment init = InitEnvironment(PARAMETERS, robot);
 	wayPoint wp =  init.getStartLocationAsStartWaypoint();
-
-	Robot robot("localhost", 6665);
-
-	ObstacleAvoidPlan pln(&robot,wp);
-	Manager manager(&robot, &pln);
+	PlnObstacleAvoid pln(robot);
+	Manager manager(robot, &pln);
 	manager.run();
 	return 0;
 }

@@ -4,16 +4,16 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../Plans/ObstacleAvoidPlan.cpp \
-../Plans/Plan.cpp 
+../Plans/Plan.cpp \
+../Plans/PlnObstacleAvoid.cpp 
 
 OBJS += \
-./Plans/ObstacleAvoidPlan.o \
-./Plans/Plan.o 
+./Plans/Plan.o \
+./Plans/PlnObstacleAvoid.o 
 
 CPP_DEPS += \
-./Plans/ObstacleAvoidPlan.d \
-./Plans/Plan.d 
+./Plans/Plan.d \
+./Plans/PlnObstacleAvoid.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

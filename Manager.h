@@ -7,7 +7,7 @@
 
 #ifndef MANAGER_H_
 #define MANAGER_H_
-#include "Robot.h"
+#include "robot.h"
 #include "Plans/Plan.h"
 #include "behaviors/Behavior.h"
 

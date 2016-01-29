@@ -1,6 +1,28 @@
 #ifndef CONSTANTS_H_
 #define CONSTANTS_H_
 
+// calc const
+#define PAI 3.1415
+#define NORMAL 1.8
+#define RESOLUTION 4
+
+
+// movment
+#define RANGE_TO_CHECK 110
+#define FORWARD_SPEED 0.4
+#define TURN_SPEED 0.01
+#define TURN_ANGLE 0.3
+#define TURN_IN_PLACE_ANGLE 0.8
+
+// turn in place
+#define TOP_RIGHT 0.7853
+#define TOP_LEFT  2.3561
+#define DOWN_RIGHT -0.7853
+#define DOWN_LEFT -2.617
+#define RIGHT_ANGLE 0
+#define LEFT_ANGLE 3.1415
+
+
 
 // Movement
 #define DISTANCE_TOLERANCE 0.3

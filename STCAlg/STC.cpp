@@ -1,6 +1,5 @@
 #include "STC.h"
 #include "fstream"
-#include "lodepng.h"
 
 
 using namespace lodepng;
@@ -15,7 +14,7 @@ STC::STC(Map &map, Position initialRobotPos) : map(map), initialRobotPos(initial
 void STC::resizeGraph(int width, int height)
 {
 	graph.resize(height);
-	for (unsigned int i = 0; i<height; i++)
+	for (signed int i = 0; i<height; i++)
 	{
 		graph[i].resize(width);
 	}
@@ -29,9 +28,9 @@ void STC::buildGraph()
 	resizeGraph(width, height);
 	vector<vector<bool> > Grid = map.GetCoarseGrid();
 
-	for (unsigned int i = 0; i < height; i++)
+	for (signed int i = 0; i < height; i++)
 	{
-		for (unsigned int k = 0; k < width; k++)
+		for (signed int k = 0; k < width; k++)
 		{
 			//cout << "this is i: " << i;
 			//cout << "this is k: " << k << endl;
@@ -47,9 +46,9 @@ void STC::AddNeighborsInTree(){
 	int height = graph.size();
 	int width = graph[0].size();
 	//int edgeCount = 0;
-	for (unsigned int i = 0; i < height; i++)
+	for (signed int i = 0; i < height; i++)
 	{
-		for (unsigned int k = 0; k < width; k++)
+		for (signed int k = 0; k < width; k++)
 		{
 			
 			if (graph[i][k] != NULL)
@@ -192,7 +191,7 @@ void STC::drawSpanningTree(const char* filePath, vector<unsigned char> image)
 	Node* n = graph[initialRobotPos.first][initialRobotPos.second];
 
 	vector<Node* > temp = n->dfsNeighbors;
-	stack<Node*, vector<Node* >> nodeStack(n->dfsNeighbors);
+	stack<Node*, vector<Node* > > nodeStack(n->dfsNeighbors);
 	nodeStack.push(n);
 
 

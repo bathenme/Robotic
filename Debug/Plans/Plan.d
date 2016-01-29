@@ -1,5 +1,5 @@
-behaviors/Behavior.d: ../behaviors/Behavior.cpp ../behaviors/Behavior.h \
- ../behaviors/../robot.h \
+Plans/Plan.d: ../Plans/Plan.cpp ../Plans/Plan.h \
+ ../Plans/../behaviors/Behavior.h ../Plans/../behaviors/../robot.h \
  /usr/local/include/player-2.0/libplayerc++/playerc++.h \
  /usr/local/include/player-2.0/libplayerc/playerc.h \
  /usr/local/include/player-2.0/libplayercore/player.h \
@@ -14,9 +14,11 @@ behaviors/Behavior.d: ../behaviors/Behavior.cpp ../behaviors/Behavior.h \
  /usr/local/include/player-2.0/libplayerc++/playererror.h \
  /usr/local/include/player-2.0/libplayerc++/clientproxy.h
 
-../behaviors/Behavior.h:
+../Plans/Plan.h:
 
-../behaviors/../robot.h:
+../Plans/../behaviors/Behavior.h:
+
+../Plans/../behaviors/../robot.h:
 
 /usr/local/include/player-2.0/libplayerc++/playerc++.h:
 

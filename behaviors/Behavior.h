@@ -7,7 +7,7 @@
 
 #ifndef BEHAVIOR_H_
 #define BEHAVIOR_H_
-#include "../Robot.h"
+#include "../robot.h"
 class Behavior {
 protected:
 	Robot* _robot;

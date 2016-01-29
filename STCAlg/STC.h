@@ -1,10 +1,11 @@
-#pragma once
-#include <vector>
-#include "Node.h"
-#include "Map.h"
+#ifndef STC_H
+#define STC_H
 #include "iostream"
-#include "lodepng.h"
-#include "wayPoint.h"
+#include <vector>
+#include "../Map/Node.h"
+#include "../Map/Map.h"
+#include "../Map/lodepng.h"
+#include "../Map/wayPoint.h"
 
 
 
@@ -38,3 +39,4 @@ public:
 	virtual ~STC();
 };
 
+#endif

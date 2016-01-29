@@ -1,83 +1,55 @@
 /*
- * Robot.cpp
+ * robot.cpp
  *
- *  Created on: Dec 31, 2015
- *      Author: user
+ *  Created on: Jun 6, 2015
+ *      Author: colman
  */
 
-#include "Robot.h"
+#include "robot.h"
+#include "math.h"
 
-Robot::Robot(char* ip, int port) :
-	_pc(ip, port), _pp(&_pc), _lp(&_pc) {
-
+Robot::Robot(char* ip, int port){
 	_pc = new PlayerCc::PlayerClient(ip,port);
 	_pp = new PlayerCc::Position2dProxy(_pc);
 	_lp = new LaserProxy(_pc);
 
 	_pp->SetMotorEnable(true);
+	//TOFIX
 	_pp->SetOdometry(2.2,-2.875,0.34);
 
 	int i;
 	for(i=0;i<15;i++)
-			{
-				_pc->Read();
-			}
-
-	_oldX=
+	{
+		_pc->Read();
+	}
 		_laserCount = _lp->GetCount();
 
-
 }
 
-void Robot::updatePosition(double x, double y, double yaw)
-{
-	_oldX = x;
-	_oldY = y;
-	_oldYaw = yaw;
+// Methods
 
-}
-
-void Robot::updateCurrPosition(double x, double y, double yaw)
-{
-	_x = x;
-	_y = y;
-	_yaw = yaw;
-}
-
-void Robot::setSpeed(float xSpeed, float ySpeed)
-{
-	_pp->SetSpeed(xSpeed, ySpeed);
-}
 bool Robot::freeInFront(float distance)
 {
 	int i;
-	for(i=300;i<400;i+=5)
-		if(_lp[i] < distance)
+	for(i=300;i<400;i+=5){
+		if((*_lp)[i] < distance)
+		{
 			return false;
+		}
+	}
 
 	return true;
 }
 
-bool Robot::checkRange(int nStart, int nEnd)
+void Robot::read()
 {
-	bool is_Good = true;
+	_pc->Read();
+	_x = (double)((_pp->GetXPos() * 100)/gridResolution) + (double)gridWidth/2;
+	_y = -(double)((_pp->GetYPos()* 100)/gridResolution) + (double)gridHeight/2;
+	_yaw = _pp->GetYaw();
 
-	for (int index = nStart; (index <= nEnd) && (is_Good); index++)
-	{
-		is_Good = (this->getLaserDistance(index) > DISTANCE_TOLERANCE);
-	}
-
-	return (is_Good);
-}
-
-float Robot::getLaserDistance(int index)
-{
-	return _lp->GetRange(index);
 
 }
-
-
-
 double Robot::getOldYawPosition()
 {
  return _oldYaw;
@@ -109,7 +81,33 @@ double Robot::getYPosition()
 }
 
 
+int Robot::getLaserCount()
+{
+	return _laserCount;
+}
 
-Robot::~Robot() {
-	// TODO Auto-generated destructor stub
+
+void Robot::setSpeed(float speed, float angularSpeed)
+{
+	_pp->SetSpeed(speed,angularSpeed);
+}
+
+float Robot::getLaserDistance(int index)
+{
+	return _lp->GetRange(index);
+}
+
+void Robot::updatePosition(double x, double y, double yaw)
+{
+	_oldX = x;
+	_oldY = y;
+	_oldYaw = yaw;
+
+}
+
+void Robot::updateCurrPosition(double x, double y, double yaw)
+{
+	_x = x;
+	_y = y;
+	_yaw = yaw;
 }
