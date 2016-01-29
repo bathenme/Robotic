@@ -1,7 +1,9 @@
 #include "wayPoint.h"
 
 
-wayPoint::wayPoint(int x, int y) :x(x), y(y){}
+wayPoint::wayPoint(int x, int y) :x(x), y(y), next(NULL){
+
+}
 
 void wayPoint::setNextWayPoint(wayPoint* nextWayPoint){
 	next = nextWayPoint;
@@ -17,7 +19,6 @@ int wayPoint::getY(){
 wayPoint* wayPoint::getNext(){
 	return next;
 }
-
 void wayPoint::setX(int xx){
 	x = xx;
 }

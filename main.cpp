@@ -15,7 +15,9 @@ int main()
 {
 	Robot* robot = new Robot("localhost", 6665);
 	cout<<"start main"<<endl;
-	InitEnvironment init = InitEnvironment(PARAMETERS, robot);
+	InitEnvironment init = InitEnvironment(PARAMETERS);
+	robot->updatePosition(init.getStartLocation().location.first,init.getStartLocation().location.second,init.getStartLocation().yaw);
+
 	cout<<"start wp"<<endl;
 	wayPoint wp =  init.getStartLocationAsStartWaypoint();
 	PlnObstacleAvoid pln(robot);

@@ -6,27 +6,20 @@
 
 using namespace lodepng;
 
-Map::Map(float mapResolution, float maprobotSize, const char* filePath) : mapResolution(mapResolution), maprobotSize(maprobotSize)
+Map::Map(float mapResolution, float robotSize, const char* filePath) : mapResolution(mapResolution), robotSize(robotSize)
 {
-	robotSizeInCells = maprobotSize / mapResolution;
+
+	robotSizeInCells = robotSize / mapResolution;
 	inflationRaduis = 0.3 * robotSizeInCells;
-	cout << "inflation Radius" << inflationRaduis << endl;
-	decode(image,mapWidth,mapHeight,filePath);
-	cout << "Map size: " << mapWidth<< ", " << mapHeight << endl;
-
-
-}
-
-void Map::loadMapFromFile()
-{
-
-
+	cout << "inflation raduis" << inflationRaduis << endl;
+	decode(image, mapWidth, mapHeight, filePath);
+	cout << "Map size: " << mapWidth << ", " << mapHeight << endl;
 	loadMap();
 }
 
+
 void Map::converImageToGrid()
 {
-	cout << "temp" << endl;
 	map.resize(mapHeight);
 	for (unsigned int i = 0; i<mapHeight; i++)
 	{
@@ -38,15 +31,12 @@ void Map::loadMap()
 {
 	converImageToGrid();
 
-
-	for (int i = 0; i < mapHeight; i++) {
-		for (int j = 0; j < mapWidth; j++) {
-			/*cout << "this is i: "<< i<< "and this is j: " << j << endl;*/
+	for (unsigned int i = 0; i < mapHeight; i++) {
+		for (unsigned int j = 0; j < mapWidth; j++) {
 			map[i][j] = checkIfCellIsOccupied(i, j);
 		}
 	}
 	inflateObstacles();
-	
 }
 
 bool Map::checkIfCellIsOccupied(int i, int j) {
@@ -62,7 +52,7 @@ bool Map::checkIfCellIsOccupied(int i, int j) {
 
 void Map::inflateObstacles()
 {
-	
+
 	inflatbleMap.resize(mapHeight);
 	for (unsigned int i = 0; i<mapHeight; i++)
 	{
@@ -85,7 +75,7 @@ void Map::inflateObstacles()
 						{
 							inflatbleMap[a][b] = true;
 						}
-						
+
 					}
 				}
 			}
@@ -94,16 +84,14 @@ void Map::inflateObstacles()
 	}
 	//printMap(inflatbleMap);
 	pirntInfatablMapIntoPng();
-	
+
 }
 
 void Map::printMap(vector<vector<bool> > map) const
-{	
+{
 	ofstream myRoboticLab;
 	myRoboticLab.open("myRoboticLab.txt");
-	//cout << mapHeight << endl;
-	//cout << mapWidth << endl;
-	
+
 	for (unsigned int i = 0; i < mapHeight; i++)
 	{
 		for (unsigned int k = 0; k < mapWidth; k++)
@@ -126,10 +114,10 @@ bool Map::isTrueInflateableMap(int i, int j, int sizeToMerge)
 {
 	int startHeight = i*sizeToMerge;
 	int startWidth = j*sizeToMerge;
-	//cout << "i:" << i << " " << "j:" << j << endl;
-	for (unsigned int a = startHeight; a < (startHeight + sizeToMerge); a++)
+
+	for (int a = startHeight; a < (startHeight + sizeToMerge); a++)
 	{
-		for (unsigned int b = startWidth; b < (startWidth + sizeToMerge); b++)
+		for (signed int b = startWidth; b < (startWidth + sizeToMerge); b++)
 		{
 			if (inflatbleMap[a][b] == true)
 				return true;
@@ -138,7 +126,7 @@ bool Map::isTrueInflateableMap(int i, int j, int sizeToMerge)
 	return false;
 }
 void Map::buildGrid(int sizeToMerge, Grid& mapToResize)
-{	
+{
 	cout << mapHeight / sizeToMerge << " " << mapWidth / sizeToMerge << endl;
 	mapToResize.resize(mapHeight / sizeToMerge);
 	for (unsigned int i = 0; i < (mapHeight / sizeToMerge); i++)
@@ -156,9 +144,7 @@ void Map::buildGrid(int sizeToMerge, Grid& mapToResize)
 			}
 			else
 				mapToResize[i][j] = false;
-
 		}
-
 	}
 }
 
@@ -166,12 +152,10 @@ void Map::printGrid(const Grid grid, int mapheight, int mapwidth, const char* fi
 {
 	ofstream myRoboticLab;
 	myRoboticLab.open(filePath);
-	//cout << mapHeight << endl;
-	//cout << mapWidth << endl;
 
-	for (unsigned int i = 0; i < mapheight; i++)
+	for (signed int i = 0; i < mapheight; i++)
 	{
-		for (unsigned int k = 0; k < mapwidth; k++)
+		for (signed int k = 0; k < mapwidth; k++)
 		{
 			if (grid[i][k])
 			{

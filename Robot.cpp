@@ -14,15 +14,15 @@ Robot::Robot(char* ip, int port){
 	_lp = new LaserProxy(_pc);
 
 	_pp->SetMotorEnable(true);
-	//TOFIX
-	_pp->SetOdometry(2.2,-2.875,0.34);
+
 
 	int i;
 	for(i=0;i<15;i++)
 	{
 		_pc->Read();
 	}
-		_laserCount = _lp->GetCount();
+	//TOFIX
+	_laserCount = _lp->GetCount();
 
 }
 
@@ -44,24 +44,10 @@ bool Robot::freeInFront(float distance)
 void Robot::read()
 {
 	_pc->Read();
-	_x = (double)((_pp->GetXPos() * 100)/gridResolution) + (double)gridWidth/2;
-	_y = -(double)((_pp->GetYPos()* 100)/gridResolution) + (double)gridHeight/2;
-	_yaw = _pp->GetYaw();
 
 
 }
-double Robot::getOldYawPosition()
-{
- return _oldYaw;
-}
-double Robot::getOldYPosition()
-{
-	return _oldY;
-}
-double Robot::getOldXPosition()
-{
- return _oldX;
-}
+
 LaserProxy* Robot::getLaser()
 {
 	return _lp;
@@ -99,15 +85,10 @@ float Robot::getLaserDistance(int index)
 
 void Robot::updatePosition(double x, double y, double yaw)
 {
-	_oldX = x;
-	_oldY = y;
-	_oldYaw = yaw;
-
-}
-
-void Robot::updateCurrPosition(double x, double y, double yaw)
-{
 	_x = x;
-	_y = y;
-	_yaw = yaw;
+
+	_y= y;
+	_yaw =yaw;
+	_pp->SetOdometry(x,y, yaw);
+
 }

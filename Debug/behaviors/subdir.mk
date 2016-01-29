@@ -4,23 +4,23 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../Behaviors/Behavior.cpp \
-../Behaviors/MoveForward.cpp 
+../behaviors/Behavior.cpp \
+../behaviors/MoveForward.cpp 
 
 OBJS += \
-./Behaviors/Behavior.o \
-./Behaviors/MoveForward.o 
+./behaviors/Behavior.o \
+./behaviors/MoveForward.o 
 
 CPP_DEPS += \
-./Behaviors/Behavior.d \
-./Behaviors/MoveForward.d 
+./behaviors/Behavior.d \
+./behaviors/MoveForward.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
-Behaviors/%.o: ../Behaviors/%.cpp
+behaviors/%.o: ../behaviors/%.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
-	g++ -I/usr/local/include/player-2.0 -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o"$@" "$<"
+	g++ -I/usr/local/include/player-2.0 -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

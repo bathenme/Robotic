@@ -21,7 +21,7 @@ bool MoveForward::stopCond()
 }
 void MoveForward::action()
 {
-	_robot->setSpeed(0.5,0.0);
+	_robot->setSpeed(0.5,0.2);
 }
 
 MoveForward::~MoveForward() {

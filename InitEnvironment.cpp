@@ -1,7 +1,7 @@
 #include "InitEnvironment.h"
-#include <string>
 
-InitEnvironment::InitEnvironment(const char* parametersFile, Robot* robot){
+
+InitEnvironment::InitEnvironment(const char* parametersFile){
 	ifstream paramfile(parametersFile);
 	string line;
 	char delimiter = ':';
@@ -17,7 +17,8 @@ InitEnvironment::InitEnvironment(const char* parametersFile, Robot* robot){
 			// trim from end
 			params[1].erase(find_if(params[1].rbegin(), params[1].rend(), not1(ptr_fun<int, int>(isspace))).base(), params[1].end());
 
-			mapImg = params[1].c_str();
+			mapImg = (char *)malloc(params[1].size() + 1);
+			memcpy(mapImg, params[1].c_str(), params[1].size() + 1);
 
 		}
 		else if (params[0] == "startLocation"){
@@ -28,15 +29,11 @@ InitEnvironment::InitEnvironment(const char* parametersFile, Robot* robot){
 
 			vector<string> loc = split(params[1], ' ');
 
-			int col = atoi(loc.at(0).c_str()); 
+			int col = atoi(loc.at(0).c_str());
 			int row = atoi(loc.at(1).c_str());
+
 			robotStartLocation.location = make_pair(row, col);
-			robot->startX = col;
-			robot->startY = row;
-
-			robotStartLocation.yaw = (double)atof(loc.at(2).c_str());
-			robot->startYaw = robotStartLocation.yaw;
-
+			robotStartLocation.yaw = atof(loc.at(2).c_str());
 		}
 		else if (params[0] == "robotSize"){
 			// trim from start
@@ -46,11 +43,11 @@ InitEnvironment::InitEnvironment(const char* parametersFile, Robot* robot){
 
 			vector<string> size = split(params[1], ' ');
 
-			double hieght = (double)atof(size.at(0).c_str());
-			double width = (double)atof(size.at(1).c_str());
+			float hieght = atof(size.at(0).c_str());
+			float width = atof(size.at(1).c_str());
 			sizeRobot = make_pair(hieght/100, width/100);
-			robot->robotWidth = width;
-			robot->robotLengt = hieght;
+
+
 		}
 		else if (params[0] == "MapResolutionCM"){
 			// trim from start
@@ -58,16 +55,14 @@ InitEnvironment::InitEnvironment(const char* parametersFile, Robot* robot){
 			// trim from end
 			params[1].erase(find_if(params[1].rbegin(), params[1].rend(), not1(ptr_fun<int, int>(isspace))).base(), params[1].end());
 
-			double resolution = (double)atof(params[1].c_str());
+			float resolution = atof(params[1].c_str());
 			MapResolution = resolution / 100;
 		}
 
-		
-	}
-	m = new Map(getMapResolution(), getRobotSize(),mapImg);
-	m->loadMapFromFile();
-	cout << "temp" << endl;
 
+	}
+
+	m = new Map(getMapResolution(), getRobotSize(),mapImg);
 	m->buildGrid(m->getRobotSizeInCells(), m->GetFineGrid());
 	m->buildGrid((m->getRobotSizeInCells() * 2), m->GetCoarseGrid());
 	m->printGrid(m->GetFineGrid(), (m->getMapHeight() / m->getRobotSizeInCells())
@@ -94,48 +89,45 @@ vector<string> InitEnvironment::split(string str, char delimiter) {
 	return internal;
 }
 
-const char* InitEnvironment::getMapImage(){
+char* InitEnvironment::getMapImage(){
 	return mapImg;
 }
-
 Position InitEnvironment::getStartXY(){
 	return startXY;
 }
-double InitEnvironment::getStartYaw(){
+float InitEnvironment::getStartYaw(){
 	return startYaw;
 }
+
 startLocation InitEnvironment::getStartLocation(){
 	return robotStartLocation;
 }
 
-double InitEnvironment::getRobotSize(){
+float InitEnvironment::getRobotSize(){
 	if (sizeRobot.first == sizeRobot.second){
 		return sizeRobot.first;
 	}
-	return sizeRobot.second;
+	return fmax(sizeRobot.first,sizeRobot.second);
 }
-double InitEnvironment::getMapResolution(){
+float InitEnvironment::getMapResolution(){
 	return MapResolution;
 }
 
 void InitEnvironment::start(){
 
 }
-void InitEnvironment::setRobot(Robot* robot)
-{
 
-}
 wayPoint& InitEnvironment::getStartLocationAsStartWaypoint(){
 	wayPoint* start = new wayPoint(robotStartLocation.location.first, robotStartLocation.location.second);
 	cout << "start col: " << start->getX() << " " << "start row: " << start->getY() << endl;
-	
-	
+
+
 	wayPoint* closest = new wayPoint(0,0);
 
-	double mindistance = 99999;
+	float mindistance = 99999;
 
 	Node* n = stc->getNodeGraph().at(8).at(2);
-	
+
 	stack<wayPoint* > wayPointStack;
 	wayPointStack.push(n->leftTopWayPoint);
 	while (!wayPointStack.empty()){
@@ -175,4 +167,5 @@ wayPoint& InitEnvironment::getStartLocationAsStartWaypoint(){
 
 InitEnvironment::~InitEnvironment()
 {
+	free(mapImg);
 }

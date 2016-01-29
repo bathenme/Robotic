@@ -23,6 +23,7 @@ PlnObstacleAvoid::PlnObstacleAvoid(Robot* robot) {
 
 
 	_behaviors[2]->addNext(_behaviors[0]);
+	_behaviors[2]->addNext(_behaviors[1]);
 
 	_start = _behaviors[0];
 

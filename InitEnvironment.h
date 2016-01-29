@@ -7,6 +7,7 @@
 
 #ifndef INITENVIRONMENT_H_
 #define INITENVIRONMENT_H_
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -20,28 +21,28 @@
 #include "STCAlg/STC.h"
 #include "Map/Map.h"
 #include "robot.h"
+#include <cmath>
 
 
 using namespace std;
 
 typedef pair<int, int> Position;
-typedef pair<double, double> robotSize;
+typedef pair<float, float> robotSize;
 struct startLocation {
 	Position location;
-	double yaw;
+	float yaw;
 };
 
 class InitEnvironment
 {
 public:
-	InitEnvironment(const char* parametersFile, Robot* robot);
-	void setRobot(Robot* robot);
-	const char* getMapImage();
+	InitEnvironment(const char* parametersFile);
+	char* getMapImage();
 	startLocation getStartLocation();
 	Position getStartXY();
-	double getStartYaw();
-	double getRobotSize();
-	double getMapResolution();
+	float getStartYaw();
+	float getRobotSize();
+	float getMapResolution();
 	wayPoint& getStartLocationAsStartWaypoint();
 	void start();
 	~InitEnvironment();
@@ -49,12 +50,12 @@ public:
 private:
 	Map* m;
 	STC* stc;
-	const char* mapImg;
+	char* mapImg;
 	Position startXY;
-	double startYaw;
+	float startYaw;
 	startLocation robotStartLocation;
 	robotSize sizeRobot;
-	double MapResolution;
+	float MapResolution;
 	vector<string> split(string str, char delimiter);
 };
 

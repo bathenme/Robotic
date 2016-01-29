@@ -1,3 +1,10 @@
+/*
+ * wayPoint.h
+ *
+ *  Created on: Jan 25, 2016
+ *      Author: colman
+ */
+
 #ifndef WAYPOINT_H_
 #define WAYPOINT_H_
 
@@ -8,7 +15,7 @@ private:
 	int x;
 	int y;
 	wayPoint* next;
-	
+
 public:
 	wayPoint(int x, int y);
 	void setNextWayPoint(wayPoint* nextWayPoint);
@@ -20,4 +27,5 @@ public:
 	~wayPoint();
 };
 
-#endif
+
+#endif /* WAYPOINT_H_ */
