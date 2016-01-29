@@ -22,6 +22,7 @@ bool MoveForward::stopCond()
 void MoveForward::action()
 {
 	_robot->setSpeed(0.5,0.2);
+	cout<<"MOVEFOR"<<endl;
 }
 
 MoveForward::~MoveForward() {

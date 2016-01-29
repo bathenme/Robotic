@@ -1,5 +1,6 @@
-Plans/Plan.d: ../Plans/Plan.cpp ../Plans/Plan.h \
- ../Plans/../behaviors/Behavior.h ../Plans/../behaviors/../robot.h \
+behaviors/TurnInPlace.d: ../behaviors/TurnInPlace.cpp \
+ ../behaviors/TurnInPlace.h ../behaviors/Behavior.h \
+ ../behaviors/../robot.h \
  /usr/local/include/player-2.0/libplayerc++/playerc++.h \
  /usr/local/include/player-2.0/libplayerc/playerc.h \
  /usr/local/include/player-2.0/libplayercore/player.h \
@@ -12,13 +13,14 @@ Plans/Plan.d: ../Plans/Plan.cpp ../Plans/Plan.h \
  /usr/local/include/player-2.0/libplayerc++/playerc++config.h \
  /usr/local/include/player-2.0/libplayerc++/playerclient.h \
  /usr/local/include/player-2.0/libplayerc++/playererror.h \
- /usr/local/include/player-2.0/libplayerc++/clientproxy.h
+ /usr/local/include/player-2.0/libplayerc++/clientproxy.h \
+ ../behaviors/../Configuration/Constants.h ../behaviors/../Map/wayPoint.h
 
-../Plans/Plan.h:
+../behaviors/TurnInPlace.h:
 
-../Plans/../behaviors/Behavior.h:
+../behaviors/Behavior.h:
 
-../Plans/../behaviors/../robot.h:
+../behaviors/../robot.h:
 
 /usr/local/include/player-2.0/libplayerc++/playerc++.h:
 
@@ -45,3 +47,7 @@ Plans/Plan.d: ../Plans/Plan.cpp ../Plans/Plan.h \
 /usr/local/include/player-2.0/libplayerc++/playererror.h:
 
 /usr/local/include/player-2.0/libplayerc++/clientproxy.h:
+
+../behaviors/../Configuration/Constants.h:
+
+../behaviors/../Map/wayPoint.h:

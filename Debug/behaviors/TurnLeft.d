@@ -1,8 +1,6 @@
-InitEnvironment.d: ../InitEnvironment.cpp ../InitEnvironment.h \
- ../Map/wayPoint.h ../STCAlg/STC.h ../STCAlg/../Map/Node.h \
- ../STCAlg/../Map/wayPoint.h ../STCAlg/../Map/Map.h \
- ../STCAlg/../Map/lodepng.h ../STCAlg/../Map/wayPoint.h ../Map/Map.h \
- ../robot.h /usr/local/include/player-2.0/libplayerc++/playerc++.h \
+behaviors/TurnLeft.d: ../behaviors/TurnLeft.cpp ../behaviors/TurnLeft.h \
+ ../behaviors/Behavior.h ../behaviors/../robot.h \
+ /usr/local/include/player-2.0/libplayerc++/playerc++.h \
  /usr/local/include/player-2.0/libplayerc/playerc.h \
  /usr/local/include/player-2.0/libplayercore/player.h \
  /usr/local/include/player-2.0/libplayercore/playerconfig.h \
@@ -14,27 +12,14 @@ InitEnvironment.d: ../InitEnvironment.cpp ../InitEnvironment.h \
  /usr/local/include/player-2.0/libplayerc++/playerc++config.h \
  /usr/local/include/player-2.0/libplayerc++/playerclient.h \
  /usr/local/include/player-2.0/libplayerc++/playererror.h \
- /usr/local/include/player-2.0/libplayerc++/clientproxy.h
+ /usr/local/include/player-2.0/libplayerc++/clientproxy.h \
+ ../behaviors/../Map/wayPoint.h ../behaviors/../Configuration/Constants.h
 
-../InitEnvironment.h:
+../behaviors/TurnLeft.h:
 
-../Map/wayPoint.h:
+../behaviors/Behavior.h:
 
-../STCAlg/STC.h:
-
-../STCAlg/../Map/Node.h:
-
-../STCAlg/../Map/wayPoint.h:
-
-../STCAlg/../Map/Map.h:
-
-../STCAlg/../Map/lodepng.h:
-
-../STCAlg/../Map/wayPoint.h:
-
-../Map/Map.h:
-
-../robot.h:
+../behaviors/../robot.h:
 
 /usr/local/include/player-2.0/libplayerc++/playerc++.h:
 
@@ -61,3 +46,7 @@ InitEnvironment.d: ../InitEnvironment.cpp ../InitEnvironment.h \
 /usr/local/include/player-2.0/libplayerc++/playererror.h:
 
 /usr/local/include/player-2.0/libplayerc++/clientproxy.h:
+
+../behaviors/../Map/wayPoint.h:
+
+../behaviors/../Configuration/Constants.h:
