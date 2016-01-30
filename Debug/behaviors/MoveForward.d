@@ -13,7 +13,8 @@ behaviors/MoveForward.d: ../behaviors/MoveForward.cpp \
  /usr/local/include/player-2.0/libplayerc++/playerc++config.h \
  /usr/local/include/player-2.0/libplayerc++/playerclient.h \
  /usr/local/include/player-2.0/libplayerc++/playererror.h \
- /usr/local/include/player-2.0/libplayerc++/clientproxy.h
+ /usr/local/include/player-2.0/libplayerc++/clientproxy.h \
+ ../behaviors/../Configuration/Constants.h ../behaviors/../Map/wayPoint.h
 
 ../behaviors/MoveForward.h:
 
@@ -46,3 +47,7 @@ behaviors/MoveForward.d: ../behaviors/MoveForward.cpp \
 /usr/local/include/player-2.0/libplayerc++/playererror.h:
 
 /usr/local/include/player-2.0/libplayerc++/clientproxy.h:
+
+../behaviors/../Configuration/Constants.h:
+
+../behaviors/../Map/wayPoint.h:

@@ -118,7 +118,7 @@ void InitEnvironment::start(){
 }
 
 wayPoint& InitEnvironment::getStartLocationAsStartWaypoint(){
-	wayPoint* start = new wayPoint(robotStartLocation.location.first, robotStartLocation.location.second);
+	wayPoint* start = new wayPoint(robotStartLocation.location.second, robotStartLocation.location.first);
 	cout << "start col: " << start->getX() << " " << "start row: " << start->getY() << endl;
 
 

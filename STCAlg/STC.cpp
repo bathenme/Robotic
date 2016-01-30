@@ -212,9 +212,9 @@ void STC::drawSpanningTree(const char* filePath, vector<unsigned char> image)
 
 
 	//int t = (305 * map.getMapWidth() + 362) * 4;
-	//image[t] = 255;
-	//image[t + 1] = 51;
-	//image[t + 2] = 255;
+	//image[t] = 0;
+	//image[t + 1] = 0;
+	//image[t + 2] = 0;
 	//encodeOneStep("temp.png", image, map.getMapWidth(), map.getMapHeight());
 
 	while (!nodeStack.empty()){
@@ -489,7 +489,7 @@ void STC::drawSpanningTree(const char* filePath, vector<unsigned char> image)
 
 	}
 	drawWayPoints(image);
-	encodeOneStep("temp.png", image, map.getMapWidth(), map.getMapHeight());
+	encodeOneStep(filePath, image, map.getMapWidth(), map.getMapHeight());
 }
 
 

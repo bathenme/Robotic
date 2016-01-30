@@ -13,7 +13,7 @@
 class PlnObstacleAvoid: public Plan {
 	Behavior* _behaviors[3];
 public:
-	PlnObstacleAvoid(Robot* robot);
+	PlnObstacleAvoid(Robot* robot,wayPoint* wp);
 	virtual ~PlnObstacleAvoid();
 };
 

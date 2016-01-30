@@ -26,7 +26,7 @@
 
 using namespace std;
 
-typedef pair<int, int> Position;
+typedef pair<double, double> Position;
 typedef pair<float, float> robotSize;
 struct startLocation {
 	Position location;

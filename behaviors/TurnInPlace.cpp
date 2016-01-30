@@ -5,8 +5,8 @@
 #include "TurnInPlace.h"
 #include "Behavior.h"
 
-TurnInPlace::TurnInPlace(Robot* robot): Behavior(robot) {
-
+TurnInPlace::TurnInPlace(Robot* robot,wayPoint* wp): Behavior(robot,wp) {
+	nextWay=wp;
 }
 
 bool TurnInPlace::startCond()
@@ -50,7 +50,7 @@ int TurnInPlace::AngleDirection(double angle, double yaw)
 bool TurnInPlace::stopCond()
 {
 	// check if we got to the way point
-	if (abs(_robot->getYawPosition() - _angle) < 0.05)
+	if (abs(_robot->getYawPosition() - _angle) < 0.3)
 	{
 		// we need to change direction
 		_robot->setSpeed(0,0.0);

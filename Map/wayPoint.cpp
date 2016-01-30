@@ -1,7 +1,7 @@
 #include "wayPoint.h"
 
 
-wayPoint::wayPoint(int x, int y) :x(x), y(y), next(NULL){
+wayPoint::wayPoint(double x, double y) :x(x), y(y), next(NULL){
 
 }
 
@@ -9,20 +9,20 @@ void wayPoint::setNextWayPoint(wayPoint* nextWayPoint){
 	next = nextWayPoint;
 }
 
-int wayPoint::getX(){
+double wayPoint::getX(){
 	return x;
 }
 
-int wayPoint::getY(){
+double wayPoint::getY(){
 	return y;
 }
 wayPoint* wayPoint::getNext(){
 	return next;
 }
-void wayPoint::setX(int xx){
+void wayPoint::setX(double xx){
 	x = xx;
 }
-void wayPoint::setY(int yy){
+void wayPoint::setY(double yy){
 	y = yy;
 }
 

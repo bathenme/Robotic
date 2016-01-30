@@ -7,17 +7,13 @@
 
 #include "PlnObstacleAvoid.h"
 #include "../behaviors/MoveForward.h"
-#include "../behaviors/TurnLeft.h"
-PlnObstacleAvoid::PlnObstacleAvoid(Robot* robot) {
-	// TODO Auto-generated constructor stub
+#include "../behaviors/GotoWaypoint.h"
+PlnObstacleAvoid::PlnObstacleAvoid(Robot* robot,wayPoint* wp) {
 	//Creating behaviors
-	_behaviors[0] = new MoveForward(robot);
-	_behaviors[1] = new TurnLeft(robot);
+	_behaviors[0] = new GotoWaypoint(robot,wp);
 
 	//Connecting behaviors
-	_behaviors[0]->addNext(_behaviors[1]);
-
-	_behaviors[1]->addNext(_behaviors[0]);
+	_behaviors[0]->addNext(_behaviors[0]);
 
 	_start = _behaviors[0];
 

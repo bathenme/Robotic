@@ -14,9 +14,10 @@ Plans/PlnObstacleAvoid.d: ../Plans/PlnObstacleAvoid.cpp \
  /usr/local/include/player-2.0/libplayerc++/playerclient.h \
  /usr/local/include/player-2.0/libplayerc++/playererror.h \
  /usr/local/include/player-2.0/libplayerc++/clientproxy.h \
- ../Plans/../robot.h ../Plans/../behaviors/MoveForward.h \
- ../Plans/../behaviors/Behavior.h ../Plans/../behaviors/TurnLeft.h \
- ../Plans/../behaviors/../Map/wayPoint.h
+ ../Plans/../behaviors/../Configuration/Constants.h \
+ ../Plans/../behaviors/../Map/wayPoint.h ../Plans/../robot.h \
+ ../Plans/../behaviors/MoveForward.h ../Plans/../behaviors/Behavior.h \
+ ../Plans/../behaviors/GotoWaypoint.h
 
 ../Plans/PlnObstacleAvoid.h:
 
@@ -52,12 +53,14 @@ Plans/PlnObstacleAvoid.d: ../Plans/PlnObstacleAvoid.cpp \
 
 /usr/local/include/player-2.0/libplayerc++/clientproxy.h:
 
+../Plans/../behaviors/../Configuration/Constants.h:
+
+../Plans/../behaviors/../Map/wayPoint.h:
+
 ../Plans/../robot.h:
 
 ../Plans/../behaviors/MoveForward.h:
 
 ../Plans/../behaviors/Behavior.h:
 
-../Plans/../behaviors/TurnLeft.h:
-
-../Plans/../behaviors/../Map/wayPoint.h:
+../Plans/../behaviors/GotoWaypoint.h:

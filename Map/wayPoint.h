@@ -12,17 +12,17 @@
 class wayPoint
 {
 private:
-	int x;
-	int y;
+	double x;
+	double y;
 	wayPoint* next;
 
 public:
-	wayPoint(int x, int y);
+	wayPoint(double x, double y);
 	void setNextWayPoint(wayPoint* nextWayPoint);
-	int getX();
-	int getY();
-	void setX(int x);
-	void setY(int y);
+	double getX();
+	double getY();
+	void setX(double x);
+	void setY(double y);
 	wayPoint* getNext();
 	~wayPoint();
 };

@@ -1,4 +1,5 @@
-behaviors/Behavior.d: ../behaviors/Behavior.cpp ../behaviors/Behavior.h \
+behaviors/GotoWaypoint.d: ../behaviors/GotoWaypoint.cpp \
+ ../behaviors/GotoWaypoint.h ../behaviors/Behavior.h \
  ../behaviors/../robot.h \
  /usr/local/include/player-2.0/libplayerc++/playerc++.h \
  /usr/local/include/player-2.0/libplayerc/playerc.h \
@@ -14,6 +15,8 @@ behaviors/Behavior.d: ../behaviors/Behavior.cpp ../behaviors/Behavior.h \
  /usr/local/include/player-2.0/libplayerc++/playererror.h \
  /usr/local/include/player-2.0/libplayerc++/clientproxy.h \
  ../behaviors/../Configuration/Constants.h ../behaviors/../Map/wayPoint.h
+
+../behaviors/GotoWaypoint.h:
 
 ../behaviors/Behavior.h:
 

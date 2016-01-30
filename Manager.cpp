@@ -8,7 +8,6 @@
 #include "Manager.h"
 
 Manager::Manager(Robot* robot, Plan* plan) {
-	// TODO Auto-generated constructor stub
 	_robot= robot;
 	_plan = plan;
 }
@@ -21,12 +20,15 @@ void Manager::run()
 	while(currBeh)
 	{
 		_robot->read();
+		cout << "changing behavior" << endl;
 		while(!(currBeh->stopCond()))
 		{
-			cout<<"start Manager"<<endl;
+//			cout<<"x:"<<_robot->getXPosition()<<"y:"<<_robot->getYPosition()<<endl;
 			currBeh->action();
 			_robot->read();
 		}
+		_robot->setSpeed(0,0);
+		return;
 		currBeh = currBeh->getNext();
 	}
 

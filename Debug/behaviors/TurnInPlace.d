@@ -14,7 +14,8 @@ behaviors/TurnInPlace.d: ../behaviors/TurnInPlace.cpp \
  /usr/local/include/player-2.0/libplayerc++/playerclient.h \
  /usr/local/include/player-2.0/libplayerc++/playererror.h \
  /usr/local/include/player-2.0/libplayerc++/clientproxy.h \
- ../behaviors/../Configuration/Constants.h ../behaviors/../Map/wayPoint.h
+ ../behaviors/../Configuration/Constants.h ../behaviors/../Map/wayPoint.h \
+ ../behaviors/../Configuration/Constants.h
 
 ../behaviors/TurnInPlace.h:
 
@@ -51,3 +52,5 @@ behaviors/TurnInPlace.d: ../behaviors/TurnInPlace.cpp \
 ../behaviors/../Configuration/Constants.h:
 
 ../behaviors/../Map/wayPoint.h:
+
+../behaviors/../Configuration/Constants.h:

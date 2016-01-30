@@ -6,13 +6,17 @@
 #include "../Configuration/Constants.h"
 
 
-TurnLeft::TurnLeft(Robot* robot): Behavior(robot) {
+TurnLeft::TurnLeft(Robot* robot,wayPoint* wp): Behavior(robot,wp) {
+	nextWay=wp;
+
 }
 
 bool TurnLeft::startCond()
 {
 	_angle = CalcAzimot(_robot->getXPosition(), _robot->getYPosition());
-	_direction = dtor(AngleDirection(_angle, _robot->getYawPosition()));
+
+	//	_direction = dtor(AngleDirection(_angle, _robot->getYawPosition()));
+
 	return true;
 
 }
@@ -26,7 +30,7 @@ double TurnLeft::CalcAzimot(double x, double y)
 	angle = atan2(deltaY, deltaX);
 
 	//return angle;
-	return PAI;
+	return angle;
 }
 int TurnLeft::AngleDirection(double angle, double yaw)
 {
@@ -44,15 +48,24 @@ int TurnLeft::AngleDirection(double angle, double yaw)
 }
 void TurnLeft::action()
 {
-	_robot->setSpeed(TURN_SPEED, _direction);
 
+	// rotate slowly to target angle
+	if (_robot->getYawPosition() > _angle)
+	{
+	    _robot->setSpeed(0.0f, -0.15f);
+	}
+	else
+	{
+		_robot->setSpeed(0.0f, 0.15f);
+	}
 
 }
 
 bool TurnLeft::stopCond()
 {
+	cout<<fabs(_robot->getYawPosition() - (_angle))<<"stopcon turn left"<<endl;
 	// check if we got to the way point
-	if (abs(_robot->getYawPosition() - (_angle)) < 0.03)
+	if (fabs( (_angle)- _robot->getYawPosition()) <= 0.01f)
 	{
 		// we need to change direction
 		_robot->setSpeed(0,0.0);

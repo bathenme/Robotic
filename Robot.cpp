@@ -6,7 +6,6 @@
  */
 
 #include "robot.h"
-#include "math.h"
 
 Robot::Robot(char* ip, int port){
 	_pc = new PlayerCc::PlayerClient(ip,port);
@@ -14,8 +13,9 @@ Robot::Robot(char* ip, int port){
 	_lp = new LaserProxy(_pc);
 
 	_pp->SetMotorEnable(true);
-
-
+	_x=_pp->GetXPos();
+	_y=_pp->GetYPos() ;
+	_yaw=_pp->GetYaw();
 	int i;
 	for(i=0;i<15;i++)
 	{
@@ -27,6 +27,21 @@ Robot::Robot(char* ip, int port){
 }
 
 // Methods
+
+
+bool Robot::checkRadius(float dis, Position pos)
+{
+
+	double distancex = pow(pos.first- getXPosition(),2.0);
+	double distancey = pow(pos.second - getYPosition(), 2.0);
+
+	double calcdistance = sqrt(distancex + distancey);
+	if(calcdistance <= dis)
+	{
+		return true;
+	}
+	return false;
+}
 
 bool Robot::freeInFront(float distance)
 {
@@ -43,10 +58,38 @@ bool Robot::freeInFront(float distance)
 
 void Robot::read()
 {
+	_x = (double)((_pp->GetXPos() * 100)/2.5) + (double)550/2;
+	_y = -(double)((_pp->GetYPos()* 100)/2.5) + (double)380/2;
 	_pc->Read();
-
-
 }
+
+double Robot::CalcAzimot(double x, double y)
+{
+	double angle;
+	double deltaX = x- _pp->GetXPos();
+	double deltaY = y - _pp->GetYPos();
+
+
+	angle = atan2(deltaY, deltaX);
+
+	return angle;
+}
+int Robot::AngleDirection(double angle)
+{
+
+	double res = angle - _pp->GetYaw();
+	res += (res > (PAI))? -(2 *PAI): (res<-PAI) ? (2*PAI):0;
+	if(res > 0)
+	{
+		return 10;
+	}
+	else
+	{
+		return -10;
+	}
+}
+
+
 
 LaserProxy* Robot::getLaser()
 {
@@ -54,16 +97,16 @@ LaserProxy* Robot::getLaser()
 }
 double Robot::getYawPosition()
 {
-	return _yaw;
+	return _pp->GetYaw();
 }
 double Robot::getXPosition()
 {
-	return _x ;
+	return _x;
 }
 
 double Robot::getYPosition()
 {
-	return _y ;
+	return _y;
 }
 
 
@@ -85,10 +128,12 @@ float Robot::getLaserDistance(int index)
 
 void Robot::updatePosition(double x, double y, double yaw)
 {
-	_x = x;
+	//_x = x ;
 
-	_y= y;
-	_yaw =yaw;
-	_pp->SetOdometry(x,y, yaw);
+	//_y= y;
+	//_yaw =yaw;
+	//_pp->SetOdometry(x,y, yaw);
+	_pp->SetOdometry(2.5,-3.05,0.05);
+
 
 }

@@ -17,7 +17,7 @@ private:
 public:
 	double CalcAzimot(double x, double y);
 	int AngleDirection(double angle, double yaw);
-	TurnLeft(Robot* robot);
+	TurnLeft(Robot* robot,wayPoint* wp);
 	virtual bool startCond();
 	virtual bool stopCond();
 	virtual void action();

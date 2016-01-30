@@ -4,9 +4,12 @@
 #include <libplayerc++/playerc++.h>
 #include <iostream>
 #include <vector>
+#include "Configuration/Constants.h"
+#include <cmath>
+
 using namespace PlayerCc;
 using namespace std;
-
+typedef pair<double, double> Position;
 class Robot {
 private:
 	PlayerClient* _pc;
@@ -18,6 +21,8 @@ private:
 	int _laserCount;
 
 public:
+	double CalcAzimot(double x, double y);
+	int AngleDirection(double angle);
 	bool freeInFront(float distance);
 	Robot(char* ip, int port);
 	std::vector<vector<int> >  resolutionMapAfterBlow;
@@ -31,6 +36,7 @@ public:
 	double gridResolution;
 	void read();
 	void setSpeed(float speed, float angularSpeed);
+	bool checkRadius(float dis, Position pos);
 	float getLaserDistance(int index);
 	double getXPosition();
 	double getYPosition();

@@ -17,7 +17,7 @@
 
 using namespace std;
 
-typedef pair<int, int> Position;
+typedef pair<double, double> Position;
 //typedef pair<Position, Position> Edge;
 class STC {
 private:
