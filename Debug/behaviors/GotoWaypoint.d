@@ -14,7 +14,8 @@ behaviors/GotoWaypoint.d: ../behaviors/GotoWaypoint.cpp \
  /usr/local/include/player-2.0/libplayerc++/playerclient.h \
  /usr/local/include/player-2.0/libplayerc++/playererror.h \
  /usr/local/include/player-2.0/libplayerc++/clientproxy.h \
- ../behaviors/../Configuration/Constants.h ../behaviors/../Map/wayPoint.h
+ ../behaviors/../Configuration/Constants.h ../behaviors/../Map/wayPoint.h \
+ ../behaviors/../Map/wayPoint.h
 
 ../behaviors/GotoWaypoint.h:
 
@@ -49,5 +50,7 @@ behaviors/GotoWaypoint.d: ../behaviors/GotoWaypoint.cpp \
 /usr/local/include/player-2.0/libplayerc++/clientproxy.h:
 
 ../behaviors/../Configuration/Constants.h:
+
+../behaviors/../Map/wayPoint.h:
 
 ../behaviors/../Map/wayPoint.h:

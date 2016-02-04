@@ -9,28 +9,35 @@
 
 
 
-GotoWaypoint::GotoWaypoint(Robot* robot,wayPoint* wp):Behavior(robot,wp) {
-	_wp = wp;
+GotoWaypoint::GotoWaypoint(Robot* robot):Behavior(robot) {
+
+	_angle = CalcAzimot(_robot->getXPosition(), _robot->getYPosition());
+	//_direction = dtor(_robot->AngleDirection(_angle));
 }
 bool GotoWaypoint::startCond()
 {
+	cout<<"start con way"<<endl;
 	return true;
 }
 bool GotoWaypoint::stopCond()
 {
-	if(_robot->checkRadius(3.0, std::make_pair(_wp->getNext()->getX() ,_wp->getNext()->getY() ))){
-		_wp=_wp->getNext();
-		cout << "stopping!" << endl;
-		return true;
-	}
-	return false;
+	cout<<"stop con way"<<endl;
+_angle = CalcAzimot(_robot->getXPosition(), _robot->getYPosition());
+
+if (fabs(_angle - _robot->getYawPosition()) <= 0.1f) // it is less than 1 degree diffrence.
+{
+	_robot->setSpeed(0.0,0.0); // stop moving for now.
+	return true;
+}
+
+return false;
 }
 
 double GotoWaypoint::CalcAzimot(double x, double y)
 {
 	double angle;
-	double deltaX = _wp->getNext()->getX() - x;
-	double deltaY = _wp->getNext()->getY()  - y;
+	double deltaX = _robot->getDestWayPoint()->getNext()->getXNew() - x;
+	double deltaY = _robot->getDestWayPoint()->getNext()->getYNew()  - y;
 
 
 	angle = atan2(deltaY, deltaX);
@@ -40,33 +47,24 @@ double GotoWaypoint::CalcAzimot(double x, double y)
 
 void GotoWaypoint::action()
 {
-	double _angle = CalcAzimot(_robot->getXPosition(), _robot->getYPosition());
-	double _deltaAngle = 0;
 
-	_deltaAngle = fabs(_angle) - fabs(_robot->getYawPosition());
+	_angle = CalcAzimot(_robot->getXPosition(), _robot->getYPosition());
 
-	double _angleSpeed = 0.0f;
-	double _forwardSpeed = 0.5f;
-
-	cout << "going from: " << _robot->getXPosition() <<"," << _robot->getYPosition();
-	cout << "to waypoint: " << _wp->getNext()->getX()  << "," <<  _wp->getNext()->getY()  << endl;
-	cout << "angle: " << _angle << "delta angle: " << _deltaAngle << endl;
-	cout<<"yaw:      "<<_robot->getYawPosition()<<endl;
-
-	if (fabs(_deltaAngle) > 0.1f){
-		_forwardSpeed = 0.0f;
-		if (_deltaAngle > 0.0f){
-			_angleSpeed = fmin(-0.5f, -0.05f * fabs(_deltaAngle));
-			cout << "turning minus" << endl;
-		}
-		else{
-			_angleSpeed = fmin(0.5f, 0.05f * fabs(_deltaAngle));
-			cout << "turning plus" << endl;
-		}
+	cout<<"angle:"<<_angle<<"  "<<"yaw"<<_robot->getYawPosition()<<endl;
+	cout<<"wp:"<<_robot->getDestWayPoint()->getNext()->getXNew()<<"y:"<<_robot->getDestWayPoint()->getNext()->getYNew()<<endl;
+		// rotate slowly to target angle
+	if (_robot->getYawPosition() > _angle)
+	{
+		cout<<"minus"<<endl;
+	    _robot->setSpeed(0.0f, -0.3f);
 	}
-	cout << "going forward" << endl;
-	_robot->setSpeed(_forwardSpeed, _angleSpeed);
+	else
+	{
+		cout<<"plus"<<endl;
+		_robot->setSpeed(0.0f, 0.3f);
+	}
 }
+
 
 GotoWaypoint::~GotoWaypoint() {
 

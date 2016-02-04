@@ -18,7 +18,7 @@ protected:
 	Behavior** _next;
 	int _sizeOfNext;
 public:
-	Behavior(Robot* robot,wayPoint* wp);
+	Behavior(Robot* robot);
 	virtual bool startCond()=0;
 	virtual bool stopCond()=0;
 	virtual void action() = 0;

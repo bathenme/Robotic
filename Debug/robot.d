@@ -12,7 +12,7 @@ robot.d: ../robot.cpp ../robot.h \
  /usr/local/include/player-2.0/libplayerc++/playerclient.h \
  /usr/local/include/player-2.0/libplayerc++/playererror.h \
  /usr/local/include/player-2.0/libplayerc++/clientproxy.h \
- ../Configuration/Constants.h
+ ../Configuration/Constants.h ../Map/wayPoint.h
 
 ../robot.h:
 
@@ -43,3 +43,5 @@ robot.d: ../robot.cpp ../robot.h \
 /usr/local/include/player-2.0/libplayerc++/clientproxy.h:
 
 ../Configuration/Constants.h:
+
+../Map/wayPoint.h:

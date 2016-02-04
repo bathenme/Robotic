@@ -16,19 +16,21 @@ void Manager::run()
 	Behavior* currBeh = _plan->getStart();
 	_robot->read();
 	if(!(currBeh->startCond()))
+	{
+		cout<<"x:"<<_robot->getXPosition()<<"y:"<<_robot->getYPosition()<<endl;
 			return;
+	}
 	while(currBeh)
 	{
 		_robot->read();
 		cout << "changing behavior" << endl;
 		while(!(currBeh->stopCond()))
 		{
-//			cout<<"x:"<<_robot->getXPosition()<<"y:"<<_robot->getYPosition()<<endl;
+			cout<<"x:"<<_robot->getXPosition()<<"y:"<<_robot->getYPosition()<<endl;
+
 			currBeh->action();
 			_robot->read();
 		}
-		_robot->setSpeed(0,0);
-		return;
 		currBeh = currBeh->getNext();
 	}
 

@@ -12,13 +12,12 @@
 
 class MoveForward: public Behavior {
 public:
-	MoveForward(Robot* robot,wayPoint* wp);
+	MoveForward(Robot* robot);
 	virtual bool startCond();
 	virtual bool stopCond();
 	virtual void action();
 	virtual ~MoveForward();
-private:
-	wayPoint* _wp;
+
 };
 
 #endif /* MOVEFORWARD_H_ */

@@ -1,5 +1,6 @@
-behaviors/TurnLeft.d: ../behaviors/TurnLeft.cpp ../behaviors/TurnLeft.h \
- ../behaviors/Behavior.h ../behaviors/../robot.h \
+behaviors/ObstacleAvoid.d: ../behaviors/ObstacleAvoid.cpp \
+ ../behaviors/ObstacleAvoid.h ../behaviors/Behavior.h \
+ ../behaviors/../robot.h \
  /usr/local/include/player-2.0/libplayerc++/playerc++.h \
  /usr/local/include/player-2.0/libplayerc/playerc.h \
  /usr/local/include/player-2.0/libplayercore/player.h \
@@ -14,9 +15,9 @@ behaviors/TurnLeft.d: ../behaviors/TurnLeft.cpp ../behaviors/TurnLeft.h \
  /usr/local/include/player-2.0/libplayerc++/playererror.h \
  /usr/local/include/player-2.0/libplayerc++/clientproxy.h \
  ../behaviors/../Configuration/Constants.h ../behaviors/../Map/wayPoint.h \
- ../behaviors/../Configuration/Constants.h
+ ../behaviors/../Map/wayPoint.h
 
-../behaviors/TurnLeft.h:
+../behaviors/ObstacleAvoid.h:
 
 ../behaviors/Behavior.h:
 
@@ -52,4 +53,4 @@ behaviors/TurnLeft.d: ../behaviors/TurnLeft.cpp ../behaviors/TurnLeft.h \
 
 ../behaviors/../Map/wayPoint.h:
 
-../behaviors/../Configuration/Constants.h:
+../behaviors/../Map/wayPoint.h:

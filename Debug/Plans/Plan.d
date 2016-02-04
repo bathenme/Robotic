@@ -14,6 +14,7 @@ Plans/Plan.d: ../Plans/Plan.cpp ../Plans/Plan.h \
  /usr/local/include/player-2.0/libplayerc++/playererror.h \
  /usr/local/include/player-2.0/libplayerc++/clientproxy.h \
  ../Plans/../behaviors/../Configuration/Constants.h \
+ ../Plans/../behaviors/../Map/wayPoint.h \
  ../Plans/../behaviors/../Map/wayPoint.h
 
 ../Plans/Plan.h:
@@ -49,5 +50,7 @@ Plans/Plan.d: ../Plans/Plan.cpp ../Plans/Plan.h \
 /usr/local/include/player-2.0/libplayerc++/clientproxy.h:
 
 ../Plans/../behaviors/../Configuration/Constants.h:
+
+../Plans/../behaviors/../Map/wayPoint.h:
 
 ../Plans/../behaviors/../Map/wayPoint.h:

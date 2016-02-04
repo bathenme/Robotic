@@ -7,32 +7,33 @@
 
 #include "MoveForward.h"
 
-MoveForward::MoveForward(Robot* robot,wayPoint* wp):Behavior(robot,wp) {
-	_wp = wp;
+MoveForward::MoveForward(Robot* robot):Behavior(robot) {
+
 	// TODO Auto-generated constructor stub
 
 }
 bool MoveForward::startCond()
 {
 	cout<<"start con MOVEFOR"<<endl;
-	return _robot->freeInFront(1.0);
+	return _robot->freeInFront(0.3);
 }
 bool MoveForward::stopCond()
 {
 	cout<<"stop con movefor"<<endl;
-	cout<<"wp:"<<_wp->getX()<<"y:"<<_wp->getY()<<endl;
+	cout<<"wp x:"<<_robot->getDestWayPoint()->getNext()->getXNew()<<"wp y:"<<_robot->getDestWayPoint()->getNext()->getYNew()<<endl;
 
-	if((_robot->getXPosition()==_wp->getX())&&(_robot->getYPosition()==_wp->getY()))
-		{
-			_wp=_wp->getNext();
-			_robot->setSpeed(0.0,0.0);
-			return true;
-		}
+	if((_robot->checkRadiusnew(0.3,_robot->getDestWayPoint()->getNext()->getXNew(),_robot->getDestWayPoint()->getNext()->getYNew())||(!_robot->freeInFront(0.3))))
+	{
+		cout<<"iffff"<<endl;
+	//	_robot->setSpeed(0.0,0.0);
+		//_robot->setDestWayPoint(_robot->getDestWayPoint()->getNext());
+		return true;
+}
 	return false;
 }
 void MoveForward::action()
 {
-    _robot->setSpeed(0.2f,0.0f); // simply drive straight.
+    _robot->setSpeed(1.0f,0.0f); // simply drive straight.
 	cout<<"MOVEFOR"<<endl;
 }
 

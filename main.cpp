@@ -16,13 +16,18 @@ int main()
 	Robot* robot = new Robot("localhost", 6665);
 	cout<<"start main"<<endl;
 	InitEnvironment init = InitEnvironment(PARAMETERS);
-	cout << "maor" << init.getStartLocation().location.first << " " << init.getStartLocation().location.second << endl;
-	robot->updatePosition(init.getStartLocation().location.first,init.getStartLocation().location.second,init.getStartLocation().yaw);
+	robot->updatePosition(init.getStartLocation().location.second,init.getStartLocation().location.first,init.getStartLocation().yaw);
 
 	cout<<"start wp"<<endl;
 	wayPoint wp =  init.getStartLocationAsStartWaypoint();
-	PlnObstacleAvoid pln(robot,&wp);
+	wayPoint* wpn =wp.getNext();
+	cout<<"start wp"<<endl;
+	robot->setDestWayPoint(wpn);
+	cout<<"start wp"<<endl;
+	PlnObstacleAvoid pln(robot);
+	cout<<"start manager"<<endl;
 	Manager manager(robot, &pln);
+	cout<<"run"<<endl;
 	manager.run();
 	return 0;
 }

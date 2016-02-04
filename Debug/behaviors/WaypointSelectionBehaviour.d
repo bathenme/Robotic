@@ -1,5 +1,6 @@
-behaviors/TurnInPlace.d: ../behaviors/TurnInPlace.cpp \
- ../behaviors/TurnInPlace.h ../behaviors/Behavior.h \
+behaviors/WaypointSelectionBehaviour.d: \
+ ../behaviors/WaypointSelectionBehaviour.cpp \
+ ../behaviors/WaypointSelectionBehaviour.h ../behaviors/Behavior.h \
  ../behaviors/../robot.h \
  /usr/local/include/player-2.0/libplayerc++/playerc++.h \
  /usr/local/include/player-2.0/libplayerc/playerc.h \
@@ -15,9 +16,9 @@ behaviors/TurnInPlace.d: ../behaviors/TurnInPlace.cpp \
  /usr/local/include/player-2.0/libplayerc++/playererror.h \
  /usr/local/include/player-2.0/libplayerc++/clientproxy.h \
  ../behaviors/../Configuration/Constants.h ../behaviors/../Map/wayPoint.h \
- ../behaviors/../Configuration/Constants.h
+ ../behaviors/../Map/wayPoint.h
 
-../behaviors/TurnInPlace.h:
+../behaviors/WaypointSelectionBehaviour.h:
 
 ../behaviors/Behavior.h:
 
@@ -53,4 +54,4 @@ behaviors/TurnInPlace.d: ../behaviors/TurnInPlace.cpp \
 
 ../behaviors/../Map/wayPoint.h:
 
-../behaviors/../Configuration/Constants.h:
+../behaviors/../Map/wayPoint.h:

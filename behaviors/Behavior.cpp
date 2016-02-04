@@ -7,7 +7,7 @@
 
 #include "Behavior.h"
 
-Behavior::Behavior(Robot* robot,wayPoint* wp) {
+Behavior::Behavior(Robot* robot) {
 	// TODO Auto-generated constructor stub
 	_robot = robot;
 	_sizeOfNext = 0;

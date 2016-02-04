@@ -11,9 +11,9 @@
 #include "Plan.h"
 #include "../robot.h"
 class PlnObstacleAvoid: public Plan {
-	Behavior* _behaviors[3];
+	Behavior* _behaviors[4];
 public:
-	PlnObstacleAvoid(Robot* robot,wayPoint* wp);
+	PlnObstacleAvoid(Robot* robot);
 	virtual ~PlnObstacleAvoid();
 };
 

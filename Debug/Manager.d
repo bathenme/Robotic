@@ -12,7 +12,7 @@ Manager.d: ../Manager.cpp ../Manager.h ../robot.h \
  /usr/local/include/player-2.0/libplayerc++/playerclient.h \
  /usr/local/include/player-2.0/libplayerc++/playererror.h \
  /usr/local/include/player-2.0/libplayerc++/clientproxy.h \
- ../Configuration/Constants.h ../Plans/Plan.h \
+ ../Configuration/Constants.h ../Map/wayPoint.h ../Plans/Plan.h \
  ../Plans/../behaviors/Behavior.h ../Plans/../behaviors/../robot.h \
  ../Plans/../behaviors/../Map/wayPoint.h ../behaviors/Behavior.h
 
@@ -47,6 +47,8 @@ Manager.d: ../Manager.cpp ../Manager.h ../robot.h \
 /usr/local/include/player-2.0/libplayerc++/clientproxy.h:
 
 ../Configuration/Constants.h:
+
+../Map/wayPoint.h:
 
 ../Plans/Plan.h:
 

@@ -106,10 +106,10 @@ void STC::buildSpanningTree()
 	buildGraph();
 	AddNeighborsInTree();
 
-	cout << initialRobotPos.first << " " << initialRobotPos.second;
+//	cout << initialRobotPos.first << " " << initialRobotPos.second;
 	DFS(graph[initialRobotPos.first][initialRobotPos.second]);
 
-	cout << "done" << endl;
+	//cout << "done" << endl;
 
 }
 
@@ -156,7 +156,7 @@ void STC::printNodes()
 	int width = graph[0].size();
 	int StartXposition = initialRobotPos.first;
 	int StartYposition = initialRobotPos.second;
-	cout << "height: " << height << " width: " << width << " StartXposition: " << StartXposition << " StartYposition: " << StartYposition << endl;
+//	cout << "height: " << height << " width: " << width << " StartXposition: " << StartXposition << " StartYposition: " << StartYposition << endl;
 
 	for (signed int i = 0; i < height; i++)
 	{
@@ -501,7 +501,7 @@ void STC::drawWayPoints(vector<unsigned char>& image){
 
 		wayPoint* waypoint = wayPointStack.top();
 		wayPointStack.pop();
-		cout << "col: "<< waypoint->getX() << " " << "row: " << waypoint->getY() << endl;
+	//	cout << "col: "<< waypoint->getX() << " " << "row: " << waypoint->getY() << endl;
 		if (waypoint != NULL)
 		{
 			int s = ((waypoint->getY() * map.getMapWidth()) + waypoint->getX()) * 4;

@@ -12,7 +12,7 @@
 
 class GotoWaypoint: public Behavior {
 public:
-	GotoWaypoint(Robot* robot,wayPoint* wp);
+	GotoWaypoint(Robot* robot);
 	virtual ~GotoWaypoint();
 	virtual bool startCond();
 	virtual bool stopCond();
@@ -20,7 +20,8 @@ public:
 	double CalcAzimot(double x, double y);
 
 private:
-	wayPoint* _wp;
+	double _direction;
+	double _angle;
 
 };
 

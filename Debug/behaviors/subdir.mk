@@ -7,22 +7,22 @@ CPP_SRCS += \
 ../behaviors/Behavior.cpp \
 ../behaviors/GotoWaypoint.cpp \
 ../behaviors/MoveForward.cpp \
-../behaviors/TurnInPlace.cpp \
-../behaviors/TurnLeft.cpp 
+../behaviors/ObstacleAvoid.cpp \
+../behaviors/WaypointSelectionBehaviour.cpp 
 
 OBJS += \
 ./behaviors/Behavior.o \
 ./behaviors/GotoWaypoint.o \
 ./behaviors/MoveForward.o \
-./behaviors/TurnInPlace.o \
-./behaviors/TurnLeft.o 
+./behaviors/ObstacleAvoid.o \
+./behaviors/WaypointSelectionBehaviour.o 
 
 CPP_DEPS += \
 ./behaviors/Behavior.d \
 ./behaviors/GotoWaypoint.d \
 ./behaviors/MoveForward.d \
-./behaviors/TurnInPlace.d \
-./behaviors/TurnLeft.d 
+./behaviors/ObstacleAvoid.d \
+./behaviors/WaypointSelectionBehaviour.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

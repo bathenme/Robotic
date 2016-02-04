@@ -21,6 +21,8 @@ public:
 	void setNextWayPoint(wayPoint* nextWayPoint);
 	double getX();
 	double getY();
+	double getXNew();
+		double getYNew();
 	void setX(double x);
 	void setY(double y);
 	wayPoint* getNext();
